@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8E14C3581BF65A0100C3F145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C3571BF65A0100C3F145 /* AppDelegate.swift */; };
-		8E14C35A1BF65A0100C3F145 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C3591BF65A0100C3F145 /* ViewController.swift */; };
 		8E14C35D1BF65A0100C3F145 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35B1BF65A0100C3F145 /* Main.storyboard */; };
 		8E14C35F1BF65A0100C3F145 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35E1BF65A0100C3F145 /* Assets.xcassets */; };
 		8E14C3621BF65A0100C3F145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C3601BF65A0100C3F145 /* LaunchScreen.storyboard */; };
 		8E14C36D1BF65A0100C3F145 /* CrumbsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C36C1BF65A0100C3F145 /* CrumbsTests.swift */; };
+		8E14C3781BF6623D00C3F145 /* CBCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C3771BF6623D00C3F145 /* CBCameraController.swift */; };
+		8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */; };
+		8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +30,6 @@
 /* Begin PBXFileReference section */
 		8E14C3541BF65A0100C3F145 /* Crumbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crumbs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E14C3571BF65A0100C3F145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E14C3591BF65A0100C3F145 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8E14C35C1BF65A0100C3F145 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E14C35E1BF65A0100C3F145 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E14C3611BF65A0100C3F145 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +37,9 @@
 		8E14C3681BF65A0100C3F145 /* CrumbsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrumbsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E14C36C1BF65A0100C3F145 /* CrumbsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrumbsTests.swift; sourceTree = "<group>"; };
 		8E14C36E1BF65A0100C3F145 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E14C3771BF6623D00C3F145 /* CBCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCameraController.swift; sourceTree = "<group>"; };
+		8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumb.swift; sourceTree = "<group>"; };
+		8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				8E14C3571BF65A0100C3F145 /* AppDelegate.swift */,
-				8E14C3591BF65A0100C3F145 /* ViewController.swift */,
-				8E14C35B1BF65A0100C3F145 /* Main.storyboard */,
+				8E14C3791BF6625A00C3F145 /* View */,
+				8E14C37E1BF670EF00C3F145 /* Model */,
 				8E14C35E1BF65A0100C3F145 /* Assets.xcassets */,
 				8E14C3601BF65A0100C3F145 /* LaunchScreen.storyboard */,
 				8E14C3631BF65A0100C3F145 /* Info.plist */,
@@ -94,6 +98,32 @@
 				8E14C36E1BF65A0100C3F145 /* Info.plist */,
 			);
 			path = CrumbsTests;
+			sourceTree = "<group>";
+		};
+		8E14C3791BF6625A00C3F145 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E14C35B1BF65A0100C3F145 /* Main.storyboard */,
+				8E14C3771BF6623D00C3F145 /* CBCameraController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8E14C37E1BF670EF00C3F145 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E14C37F1BF670F600C3F145 /* Services */,
+				8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */,
+				8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8E14C37F1BF670F600C3F145 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +176,7 @@
 				TargetAttributes = {
 					8E14C3531BF65A0100C3F145 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = EG5CG224Q3;
 					};
 					8E14C3671BF65A0100C3F145 = {
 						CreatedOnToolsVersion = 7.1;
@@ -197,7 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E14C35A1BF65A0100C3F145 /* ViewController.swift in Sources */,
+				8E14C3781BF6623D00C3F145 /* CBCameraController.swift in Sources */,
+				8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */,
+				8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */,
 				8E14C3581BF65A0100C3F145 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,11 +358,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Crumbs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DanielRakhamimov.Crumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -337,11 +373,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Crumbs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DanielRakhamimov.Crumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
