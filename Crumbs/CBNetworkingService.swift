@@ -9,7 +9,7 @@
 import ReactiveCocoa
 import Foundation
 
-class CBNetworkService: CBNetworking {
+class CBNetworkingService: CBNetworking {
     
     static let apiRef = "https://crumbs-app.herokuapp.com"
     static let postsEndPoint = "/posts"

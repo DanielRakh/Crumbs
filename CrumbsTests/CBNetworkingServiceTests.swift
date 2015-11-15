@@ -12,7 +12,7 @@ import XCTest
 
 class CBNetworkingServiceTests: XCTestCase {
     
-    let networkService = CBNetworkService()
+    let networkService = CBNetworkingService()
     
 
     override func setUp() {
