@@ -12,13 +12,15 @@
 		8E14C35D1BF65A0100C3F145 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35B1BF65A0100C3F145 /* Main.storyboard */; };
 		8E14C35F1BF65A0100C3F145 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35E1BF65A0100C3F145 /* Assets.xcassets */; };
 		8E14C3621BF65A0100C3F145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C3601BF65A0100C3F145 /* LaunchScreen.storyboard */; };
-		8E14C3781BF6623D00C3F145 /* CBCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C3771BF6623D00C3F145 /* CBCameraController.swift */; };
 		8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */; };
 		8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */; };
 		8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39C4061BF90F7500787394 /* CBCrumbCell.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkService.swift */; };
+		8EFA22181BF938FB007ADEAF /* CBCrumbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */; };
+		8EFA221A1BF94674007ADEAF /* CBNetworkingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */; };
+		8EFA221C1BF952BA007ADEAF /* CBDataManager .swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA221B1BF952BA007ADEAF /* CBDataManager .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkService.swift; sourceTree = "<group>"; };
+		8EFA22161BF938FB007ADEAF /* CrumbsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrumbsTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbTests.swift; sourceTree = "<group>"; };
+		8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingServiceTests.swift; sourceTree = "<group>"; };
+		8EFA221B1BF952BA007ADEAF /* CBDataManager .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBDataManager .swift"; sourceTree = "<group>"; };
 		9BE2024831FAA55DAA374EA4 /* Pods-Crumbs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crumbs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Crumbs/Pods-Crumbs.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				8E14C36E1BF65A0100C3F145 /* Info.plist */,
+				8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */,
+				8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */,
+				8EFA22161BF938FB007ADEAF /* CrumbsTests-Bridging-Header.h */,
 			);
 			path = CrumbsTests;
 			sourceTree = "<group>";
@@ -138,6 +147,7 @@
 			children = (
 				8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */,
 				8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */,
+				8EFA221B1BF952BA007ADEAF /* CBDataManager .swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -145,7 +155,7 @@
 		8E14C37F1BF670F600C3F145 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8EFA22111BF9306B007ADEAF /* Netowrking */,
+				8EFA22111BF9306B007ADEAF /* Networking */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -157,13 +167,13 @@
 			name = "View Model";
 			sourceTree = "<group>";
 		};
-		8EFA22111BF9306B007ADEAF /* Netowrking */ = {
+		8EFA22111BF9306B007ADEAF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				8EFA22121BF930AB007ADEAF /* CBNetworking.swift */,
 				8EFA22141BF93809007ADEAF /* CBNetworkService.swift */,
 			);
-			name = Netowrking;
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		EA1657AB5D8D4885F19ABC68 /* Pods */ = {
@@ -328,8 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E14C3781BF6623D00C3F145 /* CBCameraController.swift in Sources */,
 				8EFA22151BF93809007ADEAF /* CBNetworkService.swift in Sources */,
+				8EFA221C1BF952BA007ADEAF /* CBDataManager .swift in Sources */,
 				8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */,
 				8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */,
 				8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */,
@@ -343,6 +353,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFA221A1BF94674007ADEAF /* CBNetworkingServiceTests.swift in Sources */,
+				8EFA22181BF938FB007ADEAF /* CBCrumbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,10 +505,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CrumbsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DanielRakhamimov.CrumbsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrumbsTests/CrumbsTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crumbs.app/Crumbs";
 			};
 			name = Debug;
@@ -505,10 +520,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CrumbsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DanielRakhamimov.CrumbsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrumbsTests/CrumbsTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crumbs.app/Crumbs";
 			};
 			name = Release;

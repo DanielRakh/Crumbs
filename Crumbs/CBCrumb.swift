@@ -9,48 +9,22 @@
 import Foundation
 
 
-let kCrumbUserId = "userID"
-let kCrumbId = "crumbID"
-let kCrumbLatitudeKey = "latitude"
-let kCrumbLongitudeKey = "longitude"
-let kCrumbImageURLKey = "image"
-
-class CBCrumb : NSObject, NSCoding {
+struct CBCrumb : CBCrumbType {
     
-    var userId: Int
-    var crumbId: Int
-    var imageURL: String
-    var longitude: String
-    var latitude: String
+    let userId: Int
+    let crumbId: Int
+    let title: String
+    let imageURL: String
+    let longitude: Double
+    let latitude: Double
     
-    
-    init(userId:Int, crumbId:Int, imageURL:String, longitude:String, latitude:String) {
+    init(userId:Int, crumbId:Int, title:String, imageURL:String, longitude:Double, latitude:Double) {
         self.userId = userId
         self.crumbId = crumbId
+        self.title = title
         self.imageURL = imageURL
         self.longitude = longitude
         self.latitude = latitude
     }
-    
-    
-    // MARK: NSCoding
-    
-    required init?(coder decoder: NSCoder) {
-        latitude = decoder.decodeObjectForKey(kCrumbLatitudeKey) as! String
-        longitude = decoder.decodeObjectForKey(kCrumbLongitudeKey) as! String
-        imageURL = decoder.decodeObjectForKey(kCrumbImageURLKey) as! String
-        crumbId = decoder.decodeIntegerForKey(kCrumbId)
-        userId = decoder.decodeIntegerForKey(kCrumbUserId)
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(latitude, forKey: kCrumbLatitudeKey)
-        coder.encodeObject(longitude, forKey: kCrumbLongitudeKey)
-        coder.encodeInteger(crumbId, forKey: kCrumbId)
-        coder.encodeInteger(userId, forKey: kCrumbUserId)
-        coder.encodeObject(imageURL, forKey: kCrumbImageURLKey)
-    }
-    
-    
     
 }

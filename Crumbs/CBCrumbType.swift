@@ -9,10 +9,11 @@
 
 protocol CBCrumbType {
     
-    var user_id: Int { get }
+    var userId: Int { get }
+    var crumbId: Int { get }
+    var title: String { get }
     var imageURL: String { get }
-    var longitude: String { get }
-    var latitude: String { get }
-    var crumb_id: Int { get }
+    var longitude: Double { get }
+    var latitude: Double { get }
     
 }

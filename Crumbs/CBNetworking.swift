@@ -9,11 +9,13 @@
 import ReactiveCocoa
 
 enum CBNetworkingError : ErrorType {
-    case NetworkError(description: String)
+    
+    case ResponseError(description: String)
+    case StatusCodeError(statusCode: String)
 }
 
 protocol CBNetworking {
     
-    func producerToRequestCrumbs() -> SignalProducer<[AnyObject], CBNetworkingError>
+    func producerToRequestCrumbs() -> SignalProducer<AnyObject?, CBNetworkingError>
     
 }
