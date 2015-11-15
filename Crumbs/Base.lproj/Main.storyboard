@@ -133,6 +133,12 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="crumbImageView" destination="YNA-h2-Dtv" id="KNg-NZ-262"/>
+                                    <outlet property="originLabel" destination="lrg-gP-syB" id="0nv-H9-wXU"/>
+                                    <outlet property="timeLabel" destination="ph4-53-OYo" id="owf-z7-gYy"/>
+                                    <outlet property="titleLabel" destination="6D0-sG-fqP" id="NVt-Tq-eyk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

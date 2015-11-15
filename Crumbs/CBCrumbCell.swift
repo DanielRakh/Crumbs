@@ -10,6 +10,13 @@ import UIKit
 
 class CBCrumbCell: UITableViewCell {
 
+    @IBOutlet weak var crumbImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var originLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
