@@ -61,7 +61,7 @@ class CBCameraController: UIViewController, UINavigationControllerDelegate {
         
         let coordinate = CLLocationCoordinate2D(latitude: Double(crumb.latitude)!, longitude: Double(crumb.longitude)!)
         
-        let region = CLCircularRegion(center:coordinate, radius: 100, identifier: "\(crumb.crumbId)")
+        let region = CLCircularRegion(center:coordinate, radius: 10, identifier: "\(crumb.crumbId)")
         
         region.notifyOnEntry = true
         region.notifyOnExit = false
