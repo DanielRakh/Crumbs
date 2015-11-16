@@ -36,7 +36,10 @@ class CBNetworkingServiceTests: XCTestCase {
                 print("Response Error: \(description)")
             case .StatusCodeError(let statusCode):
                 print ("Status Code Error: \(statusCode)")
-                
+            case .IncorrectDataReturned(let description):
+                print("Incorrect Data Returned Error: \(description)")
+            default:
+                print("Hit default case in CBNetworkError")
             }
             
             }) { (response:NSData?) -> () in

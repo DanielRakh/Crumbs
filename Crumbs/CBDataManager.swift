@@ -41,7 +41,7 @@ class CBDataManager {
                 observer.sendCompleted()
             } catch let error as NSError {
                 print(error.description)
-                observer.sendFailed(CBNetworkError.ResponseError(description: error.description))
+                observer.sendFailed(CBNetworkError.IncorrectDataReturned(description: error.description))
             }
         }
     }
@@ -49,6 +49,9 @@ class CBDataManager {
     private func producerToTransformJSONToCrumbItem(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
+            
+        
+            
             let crumbs = json.flatMap { dict in
                 return CBCrumb(
                     userId: dict[kUserIdKey] as! Int,
