@@ -11,7 +11,7 @@ import Foundation
 
 class CBNetworkingService: CBNetworking {
     
-    static let apiRef = "https://crumbs-app.herokuapp.com"
+    static let apiRef = "https://crumbs-app.herokuapp.com/api/v1"
     static let postsEndPoint = "/posts"
     
     let crumbsURL = NSURL(string: apiRef + postsEndPoint)!
@@ -36,7 +36,6 @@ class CBNetworkingService: CBNetworking {
                     return
                 }
                 
-    
                 observer.sendNext(data)
                 observer.sendCompleted()
                 

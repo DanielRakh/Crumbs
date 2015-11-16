@@ -1,5 +1,5 @@
 //
-//  CBDataManager.swift
+//  CBCrumbFetcher.swift
 //  Crumbs
 //
 //  Created by Daniel on 11/15/15.
@@ -17,7 +17,7 @@ let kImageURLKey = "image_url"
 let kLongitudeKey = "longitude"
 let kLatitudeKey = "latitude"
 
-class CBDataManager {
+class CBCrumbFetcher: CBCrumbFetching {
     
     let networking: CBNetworking!
     
@@ -25,13 +25,17 @@ class CBDataManager {
         self.networking = networking
     }
     
-    func producerToFetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkError> {
+    
+    // MARK: CBCrumbFetching Implementation
+    func fetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkError> {
         
         return networking.producerToRequestAllCrumbsData()
             .flatMap(.Latest, transform: producerToTransformDataToJSON)
-            .flatMap(.Concat, transform: producerToTransformJSONToCrumbItem)
+            .flatMap(.Concat, transform: producerToTransformJSONToCrumbItems)
     }
     
+    
+    // MARK: Private Helpers
     private func producerToTransformDataToJSON(data:NSData?) -> SignalProducer<[[String : AnyObject]], CBNetworkError> {
         
         return SignalProducer {observer, disposable in
@@ -46,12 +50,10 @@ class CBDataManager {
         }
     }
     
-    private func producerToTransformJSONToCrumbItem(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkError> {
+    private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
-            
-        
-            
+    
             let crumbs = json.flatMap { dict in
                 return CBCrumb(
                     userId: dict[kUserIdKey] as! Int,
@@ -61,6 +63,7 @@ class CBDataManager {
                     longitude: Double(dict[kLongitudeKey] as! String)!,
                     latitude: Double(dict[kLatitudeKey] as! String)!)
             }
+            
             observer.sendNext(crumbs)
             observer.sendCompleted()
         }

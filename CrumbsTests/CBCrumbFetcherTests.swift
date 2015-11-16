@@ -1,5 +1,5 @@
 //
-//  CBDataManagerTests.swift
+//  CBCrumbFetcherTests.swift
 //  Crumbs
 //
 //  Created by Daniel on 11/16/15.
@@ -10,16 +10,16 @@ import XCTest
 
 @testable import Crumbs
 
-class CBDataManagerTests: XCTestCase {
+class CBCrumbFetcherTests: XCTestCase {
     
 //    let mockNetwork:CBNetworking
     
     let networkService = CBNetworkingService()
-    var dataManager:CBDataManager!
+    var crumbFetcher:CBCrumbFetching!
 
     override func setUp() {
         super.setUp()
-        dataManager = CBDataManager(networking: networkService)
+        crumbFetcher = CBCrumbFetcher(networking: networkService)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -32,7 +32,7 @@ class CBDataManagerTests: XCTestCase {
         
         let expectation = expectationWithDescription("Completion")
         
-        dataManager.producerToFetchAllCrumbs().on(failed: { (error:CBNetworkError) -> () in
+        crumbFetcher.fetchAllCrumbs().on(failed: { (error:CBNetworkError) -> () in
             print(error)
             }) { (crumbs:[CBCrumb]) -> () in
                 print(crumbs)

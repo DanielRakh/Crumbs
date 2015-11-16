@@ -31,13 +31,16 @@ class CBNetworkingServiceTests: XCTestCase {
         networkService.producerToRequestAllCrumbsData().on(failed: { (error:CBNetworkError) -> () in
             
             switch error {
-                
+    
             case .ResponseError(let description):
                 print("Response Error: \(description)")
+                
             case .StatusCodeError(let statusCode):
                 print ("Status Code Error: \(statusCode)")
+                
             case .IncorrectDataReturned(let description):
                 print("Incorrect Data Returned Error: \(description)")
+                
             default:
                 print("Hit default case in CBNetworkError")
             }
