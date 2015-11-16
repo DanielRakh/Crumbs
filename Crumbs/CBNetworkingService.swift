@@ -19,20 +19,20 @@ class CBNetworkingService: CBNetworking {
     let session = NSURLSession.sharedSession()
     
     
-    func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkingError> {
+    func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError> {
         
         return SignalProducer { observer, disposable in
             
             self.session.dataTaskWithURL(self.crumbsURL) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 
                 guard error == nil else {
-                    observer.sendFailed(CBNetworkingError.ResponseError(description: error!.localizedDescription))
+                    observer.sendFailed(CBNetworkError.ResponseError(description: error!.localizedDescription))
                     return
                 }
                 
                 guard (response as? NSHTTPURLResponse)?.statusCode == 200 else {
                     let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-                    observer.sendFailed(CBNetworkingError.StatusCodeError(statusCode: "\(statusCode)"))
+                    observer.sendFailed(CBNetworkError.StatusCodeError(statusCode: "\(statusCode)"))
                     return
                 }
                 

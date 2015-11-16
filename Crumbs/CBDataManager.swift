@@ -25,14 +25,14 @@ class CBDataManager {
         self.networking = networking
     }
     
-    func producerToFetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkingError> {
+    func producerToFetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkError> {
         
         return networking.producerToRequestAllCrumbsData()
             .flatMap(.Latest, transform: producerToTransformDataToJSON)
             .flatMap(.Concat, transform: producerToTransformJSONToCrumbItem)
     }
     
-    private func producerToTransformDataToJSON(data:NSData?) -> SignalProducer<[[String : AnyObject]], CBNetworkingError> {
+    private func producerToTransformDataToJSON(data:NSData?) -> SignalProducer<[[String : AnyObject]], CBNetworkError> {
         
         return SignalProducer {observer, disposable in
             do {
@@ -41,12 +41,12 @@ class CBDataManager {
                 observer.sendCompleted()
             } catch let error as NSError {
                 print(error.description)
-                observer.sendFailed(CBNetworkingError.ResponseError(description: error.description))
+                observer.sendFailed(CBNetworkError.ResponseError(description: error.description))
             }
         }
     }
     
-    private func producerToTransformJSONToCrumbItem(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkingError> {
+    private func producerToTransformJSONToCrumbItem(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
             let crumbs = json.flatMap { dict in

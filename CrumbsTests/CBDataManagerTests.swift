@@ -32,7 +32,7 @@ class CBDataManagerTests: XCTestCase {
         
         let expectation = expectationWithDescription("Completion")
         
-        dataManager.producerToFetchAllCrumbs().on(failed: { (error:CBNetworkingError) -> () in
+        dataManager.producerToFetchAllCrumbs().on(failed: { (error:CBNetworkError) -> () in
             print(error)
             }) { (crumbs:[CBCrumb]) -> () in
                 print(crumbs)

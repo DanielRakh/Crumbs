@@ -28,7 +28,7 @@ class CBNetworkingServiceTests: XCTestCase {
         
         let expectation = expectationWithDescription("Completion")
         
-        networkService.producerToRequestAllCrumbsData().on(failed: { (error:CBNetworkingError) -> () in
+        networkService.producerToRequestAllCrumbsData().on(failed: { (error:CBNetworkError) -> () in
             
             switch error {
                 

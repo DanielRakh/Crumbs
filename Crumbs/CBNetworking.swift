@@ -8,7 +8,7 @@
 
 import ReactiveCocoa
 
-enum CBNetworkingError : ErrorType {
+enum CBNetworkError : ErrorType {
     
     case ResponseError(description: String)
     case StatusCodeError(statusCode: String)
@@ -16,6 +16,6 @@ enum CBNetworkingError : ErrorType {
 
 protocol CBNetworking {
     
-    func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkingError>
+    func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError>
     
 }

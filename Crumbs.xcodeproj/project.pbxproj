@@ -18,6 +18,7 @@
 		8E9422721BF9AE4600841AE4 /* CBDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422711BF9AE4600841AE4 /* CBDataManagerTests.swift */; };
 		8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */; };
 		8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */; };
+		8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */; };
@@ -54,6 +55,7 @@
 		8E9422711BF9AE4600841AE4 /* CBDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDataManagerTests.swift; sourceTree = "<group>"; };
 		8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModeling.swift; sourceTree = "<group>"; };
 		8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModel.swift; sourceTree = "<group>"; };
+		8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetching.swift; sourceTree = "<group>"; };
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingService.swift; sourceTree = "<group>"; };
@@ -152,8 +154,8 @@
 		8E14C37E1BF670EF00C3F145 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E9422791BFA350200841AE4 /* Protocols */,
 				8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */,
-				8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */,
 				8EFA221B1BF952BA007ADEAF /* CBDataManager.swift */,
 			);
 			name = Model;
@@ -170,16 +172,41 @@
 		8E39C4081BF9181100787394 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */,
+				8E9422781BFA34F500841AE4 /* Protocols */,
 				8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
 		};
-		8EFA22111BF9306B007ADEAF /* Networking */ = {
+		8E9422771BFA34E400841AE4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				8EFA22121BF930AB007ADEAF /* CBNetworking.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		8E9422781BFA34F500841AE4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		8E9422791BFA350200841AE4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */,
+				8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		8EFA22111BF9306B007ADEAF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8E9422771BFA34E400841AE4 /* Protocols */,
 				8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */,
 			);
 			name = Networking;
@@ -352,6 +379,7 @@
 				8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */,
 				8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */,
 				8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */,
+				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
 				8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
 				8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */,
