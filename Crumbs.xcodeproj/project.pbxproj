@@ -21,6 +21,7 @@
 		8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */; };
 		8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227C1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift */; };
 		8E94227F1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */; };
+		8E9422811BFA8CEB00841AE4 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422801BFA8CEB00841AE4 /* AppDelegateTests.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */; };
@@ -60,6 +61,7 @@
 		8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetching.swift; sourceTree = "<group>"; };
 		8E94227C1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewCellModel.swift; sourceTree = "<group>"; };
 		8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewCellModeling.swift; sourceTree = "<group>"; };
+		8E9422801BFA8CEB00841AE4 /* AppDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingService.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */,
 				8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */,
 				8EFA22161BF938FB007ADEAF /* CrumbsTests-Bridging-Header.h */,
+				8E9422801BFA8CEB00841AE4 /* AppDelegateTests.swift */,
 			);
 			path = CrumbsTests;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9422811BFA8CEB00841AE4 /* AppDelegateTests.swift in Sources */,
 				8EFA221A1BF94674007ADEAF /* CBNetworkingServiceTests.swift in Sources */,
 				8E9422721BF9AE4600841AE4 /* CBCrumbFetcherTests.swift in Sources */,
 				8EFA22181BF938FB007ADEAF /* CBCrumbTests.swift in Sources */,

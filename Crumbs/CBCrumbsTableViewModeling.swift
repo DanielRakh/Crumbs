@@ -6,6 +6,11 @@
 //  Copyright © 2015 Daniel Rakhamimov. All rights reserved.
 //
 
+import Foundation
+import ReactiveCocoa
+
 protocol CBCrumbsTableViewModeling {
-    
+//    var cellModels: PropertyOf<[CBCrumbsTableViewCellModeling]> {get}
+//    var cellModels: PropertyOf<[CBCrumbsTableViewCellModeling]> { get }
+
 }

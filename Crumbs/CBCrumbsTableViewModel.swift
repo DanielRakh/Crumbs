@@ -10,5 +10,10 @@ import Foundation
 
 
 class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
-    //
+    
+    private let crumbsSearch: CBCrumbFetching
+    
+    init(crumbsFetcher: CBCrumbFetching) {
+        self.crumbsSearch = crumbsFetcher
+    }
 }

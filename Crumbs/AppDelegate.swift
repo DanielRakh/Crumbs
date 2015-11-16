@@ -7,18 +7,56 @@
 //
 
 import UIKit
+import Swinject
 //import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var container: Container! {
+        let container = Container()
+        
+        // Models
+        container.register(CBNetworking.self){ _ in CBNetworkingService() }
+        container.register(CBCrumbFetching.self) { r in
+            CBCrumbFetcher(networking: r.resolve(CBNetworking.self)!)
+        }
+        
+        // View Models
+        container.register(CBCrumbsTableViewModeling.self) { r in
+            CBCrumbsTableViewModel(crumbsFetcher: r.resolve(CBCrumbFetching.self)!)
+        }
+        
+        // Views
+        container.registerForStoryboard(CBCrumbsTableViewController.self) { r, c in
+            c.viewModel = r.resolve(CBCrumbsTableViewModeling.self)!
+        }
+        
+        return container
+    }
     
 //    let locationManager = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.backgroundColor = UIColor.whiteColor()
+        window.makeKeyAndVisible()
+        self.window = window
+        
+        let bundle = NSBundle(forClass: CBCrumbsTableViewController.self)
+        let storyboard = SwinjectStoryboard.create(
+            name: "Main",
+            bundle: bundle,
+            container: container)
+        window.rootViewController = storyboard.instantiateInitialViewController()
+        
+        
+        
+        
 //        locationManager.delegate = self
 //        locationManager.requestAlwaysAuthorization()
         

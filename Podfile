@@ -7,6 +7,7 @@ use_frameworks!
 target 'Crumbs' do
 
 pod 'ReactiveCocoa', '4.0.0-alpha-3'
+pod 'Swinject', '~> 0.5'
 
 
 end

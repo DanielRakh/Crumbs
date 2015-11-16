@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 protocol CBCrumbsTableViewCellModeling {
-    
+
 }
