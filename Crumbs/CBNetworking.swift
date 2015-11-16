@@ -16,6 +16,6 @@ enum CBNetworkingError : ErrorType {
 
 protocol CBNetworking {
     
-    func producerToRequestCrumbs() -> SignalProducer<AnyObject?, CBNetworkingError>
+    func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkingError>
     
 }

@@ -24,12 +24,11 @@ class CBNetworkingServiceTests: XCTestCase {
     }
     
     
-
     func testResponseForCrumbsIsNotNil() {
         
         let expectation = expectationWithDescription("Completion")
         
-        networkService.producerToRequestCrumbs().on(failed: { (error:CBNetworkingError) -> () in
+        networkService.producerToRequestAllCrumbsData().on(failed: { (error:CBNetworkingError) -> () in
             
             switch error {
                 
@@ -40,7 +39,7 @@ class CBNetworkingServiceTests: XCTestCase {
                 
             }
             
-            }) { (response:AnyObject?) -> () in
+            }) { (response:NSData?) -> () in
                 XCTAssertNotNil(response, "The response should not be nil")
                 expectation.fulfill()
         }.start()
