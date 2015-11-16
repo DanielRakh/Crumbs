@@ -9,6 +9,9 @@
 import UIKit
 
 class CBCrumbsTableViewController: UITableViewController {
+    
+    var viewModel:CBCrumbsTableViewModeling?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

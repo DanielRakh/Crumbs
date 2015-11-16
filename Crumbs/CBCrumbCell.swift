@@ -16,6 +16,8 @@ class CBCrumbCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     
+    var viewModel:CBCrumbsTableViewCellModeling?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -28,7 +28,7 @@ class CBCrumbFetcherTests: XCTestCase {
         super.tearDown()
     }
 
-    func testDataManagerToReturnCrumbs() {
+    func testCrumbFetcherToReturnCrumbs() {
         
         let expectation = expectationWithDescription("Completion")
         
@@ -36,7 +36,7 @@ class CBCrumbFetcherTests: XCTestCase {
             print(error)
             }) { (crumbs:[CBCrumb]) -> () in
                 print(crumbs)
-                XCTAssertNotNil(crumbs, "There should be some crumbs")
+                XCTAssertNotNil(crumbs, "There should be crumbs returned.")
                 expectation.fulfill()
         }.start()
         

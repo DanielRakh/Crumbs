@@ -19,6 +19,8 @@
 		8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */; };
 		8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */; };
 		8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */; };
+		8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227C1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift */; };
+		8E94227F1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */; };
@@ -56,6 +58,8 @@
 		8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModeling.swift; sourceTree = "<group>"; };
 		8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModel.swift; sourceTree = "<group>"; };
 		8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetching.swift; sourceTree = "<group>"; };
+		8E94227C1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewCellModel.swift; sourceTree = "<group>"; };
+		8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewCellModeling.swift; sourceTree = "<group>"; };
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingService.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 			children = (
 				8E9422781BFA34F500841AE4 /* Protocols */,
 				8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */,
+				8E94227C1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */,
+				8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E94227F1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift in Sources */,
 				8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */,
 				8EFA221C1BF952BA007ADEAF /* CBCrumbFetcher.swift in Sources */,
 				8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */,
@@ -382,6 +389,7 @@
 				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
 				8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
+				8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */,
 				8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */,
 				8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */,
 				8E14C3581BF65A0100C3F145 /* AppDelegate.swift in Sources */,
