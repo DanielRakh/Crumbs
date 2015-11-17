@@ -12,7 +12,7 @@
 		8E14C35D1BF65A0100C3F145 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35B1BF65A0100C3F145 /* Main.storyboard */; };
 		8E14C35F1BF65A0100C3F145 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35E1BF65A0100C3F145 /* Assets.xcassets */; };
 		8E14C3621BF65A0100C3F145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C3601BF65A0100C3F145 /* LaunchScreen.storyboard */; };
-		8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */; };
+		8E14C37B1BF66E2400C3F145 /* CBCrumbEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */; };
 		8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */; };
 		8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39C4061BF90F7500787394 /* CBCrumbCell.swift */; };
 		8E9422721BF9AE4600841AE4 /* CBCrumbFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */; };
@@ -53,7 +53,7 @@
 		8E14C3681BF65A0100C3F145 /* CrumbsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrumbsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E14C36E1BF65A0100C3F145 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E14C3771BF6623D00C3F145 /* CBCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCameraController.swift; sourceTree = "<group>"; };
-		8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumb.swift; sourceTree = "<group>"; };
+		8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbEntity.swift; sourceTree = "<group>"; };
 		8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbType.swift; sourceTree = "<group>"; };
 		8E39C4061BF90F7500787394 /* CBCrumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbCell.swift; sourceTree = "<group>"; };
 		8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetcherTests.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9422791BFA350200841AE4 /* Protocols */,
-				8E14C37A1BF66E2400C3F145 /* CBCrumb.swift */,
+				8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */,
 				8EFA221B1BF952BA007ADEAF /* CBCrumbFetcher.swift */,
 			);
 			name = Model;
@@ -393,7 +393,7 @@
 				8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */,
 				8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */,
 				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
-				8E14C37B1BF66E2400C3F145 /* CBCrumb.swift in Sources */,
+				8E14C37B1BF66E2400C3F145 /* CBCrumbEntity.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
 				8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */,
 				8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */,

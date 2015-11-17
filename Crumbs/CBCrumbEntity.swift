@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct CBCrumb : CBCrumbType {
+struct CBCrumbEntity : CBCrumbType {
     
     let userId: Int
     let crumbId: Int

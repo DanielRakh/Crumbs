@@ -28,7 +28,7 @@ class CBCrumbFetcher: CBCrumbFetching {
     
     
     // MARK: CBCrumbFetching Implementation
-    func fetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkError> {
+    func fetchAllCrumbs() -> SignalProducer<[CBCrumbEntity], CBNetworkError> {
         
         return networking.producerToRequestAllCrumbsData()
             .flatMap(.Latest, transform: producerToTransformDataToJSON)
@@ -51,12 +51,12 @@ class CBCrumbFetcher: CBCrumbFetching {
         }
     }
     
-    private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumb], CBNetworkError> {
+    private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumbEntity], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
     
             let crumbs = json.flatMap { dict in
-                return CBCrumb(
+                return CBCrumbEntity(
                     userId: dict[kUserIdKey] as! Int,
                     crumbId: dict[kCrumbIdKey] as! Int,
                     title: dict[kTitleKey] as! String,

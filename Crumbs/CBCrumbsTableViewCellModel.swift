@@ -16,7 +16,7 @@ class CBCrumbsTableViewCellModel:CBCrumbsTableViewCellModeling {
     //    let crumbImage: UIImage
     var timestampText: String
     
-    init(crumb: CBCrumb) {
+    init(crumb: CBCrumbEntity) {
         usernameText = "\(crumb.userId)"
         titleText = crumb.title
         timestampText = crumb.createdOn

@@ -24,12 +24,12 @@ let kCreatedOn = "2015-10-06T20:02:25.061Z"
 
 class CBCrumbTests: XCTestCase {
     
-    var testCrumb: CBCrumb!
+    var testCrumb: CBCrumbEntity!
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        testCrumb = CBCrumb(
+        testCrumb = CBCrumbEntity(
             userId: kUserId,
             crumbId: kCrumbId,
             title: kTitle,

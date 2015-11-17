@@ -35,7 +35,7 @@ class CBCrumbFetcherTests: XCTestCase {
         
         crumbFetcher.fetchAllCrumbs().on(failed: { (error:CBNetworkError) -> () in
             print(error)
-            }) { (crumbs:[CBCrumb]) -> () in
+            }) { (crumbs:[CBCrumbEntity]) -> () in
 //                print(crumbs)
                 XCTAssertNotNil(crumbs, "There should be crumbs returned.")
                 expectation.fulfill()
@@ -54,7 +54,7 @@ class CBCrumbFetcherTests: XCTestCase {
         
         let p = crumbFetcher.fetchAllCrumbs()
         
-        let c = p.map { (crumbs:[CBCrumb]) -> [CBCrumbsTableViewCellModel] in
+        let c = p.map { (crumbs:[CBCrumbEntity]) -> [CBCrumbsTableViewCellModel] in
             crumbs.map { crumb in
                 return CBCrumbsTableViewCellModel(crumb: crumb)
             }
