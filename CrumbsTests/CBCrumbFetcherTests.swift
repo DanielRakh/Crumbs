@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ReactiveCocoa
 
 @testable import Crumbs
 
@@ -35,7 +36,7 @@ class CBCrumbFetcherTests: XCTestCase {
         crumbFetcher.fetchAllCrumbs().on(failed: { (error:CBNetworkError) -> () in
             print(error)
             }) { (crumbs:[CBCrumb]) -> () in
-                print(crumbs)
+//                print(crumbs)
                 XCTAssertNotNil(crumbs, "There should be crumbs returned.")
                 expectation.fulfill()
         }.start()
@@ -46,6 +47,34 @@ class CBCrumbFetcherTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func testCrumbFetcherToMapCrumbs() {
+        
+        let expectation = expectationWithDescription("Completion")
+        
+        let p = crumbFetcher.fetchAllCrumbs()
+        
+        let c = p.map { (crumbs:[CBCrumb]) -> [CBCrumbsTableViewCellModel] in
+            crumbs.map { crumb in
+                return CBCrumbsTableViewCellModel(crumb: crumb)
+            }
+            }.on(next: {cellModels in
+                print(cellModels)
+                XCTAssertNotNil(cellModels, "There should be cell modls returned.")
+                expectation.fulfill()
+            })
+        
+        c.start()
+        
+        
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
+        
+        
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
 
 
 

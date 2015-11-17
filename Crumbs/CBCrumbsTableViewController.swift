@@ -10,11 +10,24 @@ import UIKit
 
 class CBCrumbsTableViewController: UITableViewController {
     
-    var viewModel:CBCrumbsTableViewModeling?
+    var viewModel:CBCrumbsTableViewModeling? {
+        didSet {
+            if let viewModel = viewModel {
+                viewModel.cellModels.producer
+                    .on(next: {_ in self.tableView.reloadData()})
+                    .start()
+            }
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.startFetch()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,12 +39,24 @@ class CBCrumbsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        if let viewModel = viewModel {
+            return viewModel.cellModels.value.count
+        }
+        
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("CrumbCell") as! CBCrumbCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CrumbCell", forIndexPath: indexPath) as! CBCrumbCell
+        
+        if let viewModel = viewModel {
+            cell.viewModel = viewModel.cellModels.value[indexPath.row]
+        } else {
+            cell.viewModel = nil
+        }
+        
+
         return cell
         
     }

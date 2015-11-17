@@ -15,5 +15,5 @@ protocol CBCrumbType {
     var imageURL: String { get }
     var longitude: Double { get }
     var latitude: Double { get }
-    
+    var createdOn: String { get }
 }

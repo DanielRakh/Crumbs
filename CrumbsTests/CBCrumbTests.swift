@@ -19,6 +19,7 @@ let kTitle = "Fake Title"
 let kImageURL = "https://fakeurl.com"
 let kLongitude = -34.10240
 let kLatitude = 45.01023
+let kCreatedOn = "2015-10-06T20:02:25.061Z"
 
 
 class CBCrumbTests: XCTestCase {
@@ -34,7 +35,9 @@ class CBCrumbTests: XCTestCase {
             title: kTitle,
             imageURL: kImageURL,
             longitude: kLongitude,
-            latitude: kLatitude)
+            latitude: kLatitude,
+            createdOn: kCreatedOn
+        )
     }
     
     override func tearDown() {

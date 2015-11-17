@@ -18,8 +18,8 @@ class CBNetworkingService: CBNetworking {
     
     let session = NSURLSession.sharedSession()
     
-    
     func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError> {
+        
         
         return SignalProducer { observer, disposable in
             

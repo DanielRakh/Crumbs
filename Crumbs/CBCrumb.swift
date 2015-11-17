@@ -17,14 +17,16 @@ struct CBCrumb : CBCrumbType {
     let imageURL: String
     let longitude: Double
     let latitude: Double
+    let createdOn: String
     
-    init(userId:Int, crumbId:Int, title:String, imageURL:String, longitude:Double, latitude:Double) {
+    init(userId:Int, crumbId:Int, title:String, imageURL:String, longitude:Double, latitude:Double, createdOn: String) {
         self.userId = userId
         self.crumbId = crumbId
         self.title = title
         self.imageURL = imageURL
         self.longitude = longitude
         self.latitude = latitude
+        self.createdOn = createdOn
     }
     
 }

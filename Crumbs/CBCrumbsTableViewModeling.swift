@@ -10,7 +10,9 @@ import Foundation
 import ReactiveCocoa
 
 protocol CBCrumbsTableViewModeling {
-//    var cellModels: PropertyOf<[CBCrumbsTableViewCellModeling]> {get}
-//    var cellModels: PropertyOf<[CBCrumbsTableViewCellModeling]> { get }
+    
+    var cellModels: AnyProperty<[CBCrumbsTableViewCellModeling]> { get }
+    
+    func startFetch()
 
 }

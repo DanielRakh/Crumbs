@@ -16,7 +16,13 @@ class CBCrumbCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     
-    var viewModel:CBCrumbsTableViewCellModeling?
+    var viewModel:CBCrumbsTableViewCellModeling? {
+        didSet {
+            titleLabel.text = viewModel?.titleText
+            originLabel.text = viewModel?.usernameText
+            timeLabel.text = viewModel?.timestampText
+        }
+    }
     
     
     override func awakeFromNib() {

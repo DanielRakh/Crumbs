@@ -16,6 +16,7 @@ let kTitleKey = "title"
 let kImageURLKey = "image_url"
 let kLongitudeKey = "longitude"
 let kLatitudeKey = "latitude"
+let kCreatedOnKey = "created_at"
 
 class CBCrumbFetcher: CBCrumbFetching {
     
@@ -61,7 +62,9 @@ class CBCrumbFetcher: CBCrumbFetching {
                     title: dict[kTitleKey] as! String,
                     imageURL: dict[kImageURLKey] as! String,
                     longitude: Double(dict[kLongitudeKey] as! String)!,
-                    latitude: Double(dict[kLatitudeKey] as! String)!)
+                    latitude: Double(dict[kLatitudeKey] as! String)!,
+                    createdOn: dict[kCreatedOnKey] as! String
+                )
             }
             
             observer.sendNext(crumbs)

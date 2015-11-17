@@ -10,5 +10,9 @@ import Foundation
 import ReactiveCocoa
 
 protocol CBCrumbsTableViewCellModeling {
-
+    
+    var usernameText: String { get }
+    var titleText: String { get }
+//    var crumbImage: UIImage { get }
+    var timestampText: String { get }
 }

@@ -9,6 +9,17 @@
 import Foundation
 
 
-class CBCrumbsTableViewCellModel: CBCrumbsTableViewCellModeling {
+class CBCrumbsTableViewCellModel:CBCrumbsTableViewCellModeling {
+    
+    var usernameText: String
+    var titleText: String
+    //    let crumbImage: UIImage
+    var timestampText: String
+    
+    init(crumb: CBCrumb) {
+        usernameText = "\(crumb.userId)"
+        titleText = crumb.title
+        timestampText = crumb.createdOn
+    }
     
 }
