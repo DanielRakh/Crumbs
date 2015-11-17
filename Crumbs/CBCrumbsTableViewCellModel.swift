@@ -7,19 +7,47 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 
-class CBCrumbsTableViewCellModel:CBCrumbsTableViewCellModeling {
+class CBCrumbsTableViewCellModel:NSObject, CBCrumbsTableViewCellModeling {
+    
     
     var usernameText: String?
     var titleText: String?
-    //    let crumbImage: UIImage
     var timestampText: String?
     
-    init(crumb: CBCrumbResponseEntity) {
+    
+    private let networkService: CBNetworking
+    private var imageURL: String?
+    private var crumbImage: UIImage?
+    
+    
+    init(crumb: CBCrumbResponseEntity, networking: CBNetworking) {
         usernameText = crumb.username
         titleText = crumb.title
         timestampText = crumb.createdTimestamp
+        imageURL = crumb.imageURL
+        
+        self.networkService = networking
+    }
+    
+    func getCrumbImage() -> SignalProducer<UIImage?, NoError> {
+        
+        if let crumbImage = self.crumbImage {
+            return SignalProducer(value: crumbImage).observeOn(UIScheduler())
+        }
+        else {
+            let imageProducer = networkService.producerToRequestImage(self.imageURL!)
+                .takeUntil(self.racutil_willDeallocProducer)
+                .on(next: { self.crumbImage = $0 })
+                .map { $0 as UIImage? }
+                .flatMapError { _ in SignalProducer<UIImage?, NoError>(value: nil) }
+            
+            return SignalProducer(value: nil)
+                .concat(imageProducer)
+                .observeOn(UIScheduler())
+        }
     }
     
 }

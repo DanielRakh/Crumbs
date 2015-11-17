@@ -28,6 +28,7 @@ class CBCrumbFetcher: CBCrumbFetching {
             .flatMap(.Concat, transform: producerToTransformJSONToCrumbItems)
     }
     
+
     
     // MARK: Private Helpers
     private func producerToTransformDataToJSON(data:NSData?) -> SignalProducer<[[String : AnyObject]], CBNetworkError> {

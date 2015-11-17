@@ -16,16 +16,19 @@ class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
     
     private let _cellModels = MutableProperty<[CBCrumbsTableViewCellModeling]>([])
     private let crumbsFetcher: CBCrumbFetching
+    private let networkService: CBNetworking
+    
 
-    init(crumbFetcher:CBCrumbFetching) {
+    init(crumbFetcher:CBCrumbFetching, networking: CBNetworking) {
         self.crumbsFetcher = crumbFetcher
+        self.networkService = networking
     }
     
     func startFetch() {
         
         crumbsFetcher.fetchAllCrumbs().map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModeling] in
             crumbs.map { crumb in
-                return CBCrumbsTableViewCellModel(crumb: crumb)
+                return CBCrumbsTableViewCellModel(crumb: crumb, networking: self.networkService)
             }
         }.observeOn(UIScheduler())
             .on(next: { models in

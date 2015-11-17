@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // View Models
         container.register(CBCrumbsTableViewModeling.self) { r in
-            CBCrumbsTableViewModel(crumbFetcher: r.resolve(CBCrumbFetching.self)!)
+            CBCrumbsTableViewModel(crumbFetcher: r.resolve(CBCrumbFetching.self)!, networking: r.resolve(CBNetworking.self)!)
         }
         
         // Views

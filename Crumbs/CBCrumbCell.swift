@@ -17,10 +17,19 @@ class CBCrumbCell: UITableViewCell {
     
     
     var viewModel:CBCrumbsTableViewCellModeling? {
+        
         didSet {
             titleLabel.text = viewModel?.titleText
             originLabel.text = viewModel?.usernameText
             timeLabel.text = viewModel?.timestampText
+            
+            if let viewModel = viewModel {
+                viewModel.getCrumbImage()
+                    .takeUntil(self.racutil_prepareForReuseProducer)
+                    .on(next: { self.crumbImageView.image = $0 })
+                    .start()
+            }
+            
         }
     }
     

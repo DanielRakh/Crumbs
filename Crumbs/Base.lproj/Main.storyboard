@@ -25,7 +25,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lRx-ma-tpA">
                                             <rect key="frame" x="-12" y="-2" width="424" height="140"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="YNA-h2-Dtv">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="YNA-h2-Dtv">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <animations/>
                                                     <constraints>

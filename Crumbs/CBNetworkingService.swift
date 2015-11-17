@@ -47,11 +47,16 @@ import Foundation
             self.session.dataTaskWithURL(NSURL(string: url)!) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 
                 guard error == nil else {
-                    observer.sendFailed(CBNetworkError.ResponseError(description: error!.localizedDescription))
+                    observer.sendFailed(.ResponseError(description: error!.localizedDescription))
                     return
                 }
                 
-                observer.sendNext(UIImage(data: data!, scale: 0)!)
+                guard let image = UIImage(data: data!, scale: 0) else {
+                    observer.sendFailed(.IncorrectDataReturned(description: "The NSData was not able to be converted to a UIImage"))
+                    return
+                }
+                
+                observer.sendNext(image)
                 observer.sendCompleted()
                 
             }.resume()

@@ -56,7 +56,7 @@ class CBCrumbFetcherTests: XCTestCase {
         
         let c = p.map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModel] in
             crumbs.map { crumb in
-                return CBCrumbsTableViewCellModel(crumb: crumb)
+                return CBCrumbsTableViewCellModel(crumb: crumb, networking: self.networkService)
             }
             }.on(next: {cellModels in
                 print(cellModels)
