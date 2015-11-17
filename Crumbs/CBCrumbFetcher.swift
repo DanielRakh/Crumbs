@@ -8,15 +8,8 @@
 
 import Foundation
 import ReactiveCocoa
+import ObjectMapper
 
-
-let kUserIdKey = "user_id"
-let kCrumbIdKey = "id"
-let kTitleKey = "title"
-let kImageURLKey = "image_url"
-let kLongitudeKey = "longitude"
-let kLatitudeKey = "latitude"
-let kCreatedOnKey = "created_at"
 
 class CBCrumbFetcher: CBCrumbFetching {
     
@@ -28,7 +21,7 @@ class CBCrumbFetcher: CBCrumbFetching {
     
     
     // MARK: CBCrumbFetching Implementation
-    func fetchAllCrumbs() -> SignalProducer<[CBCrumbEntity], CBNetworkError> {
+    func fetchAllCrumbs() -> SignalProducer<[CBCrumbResponseEntity], CBNetworkError> {
         
         return networking.producerToRequestAllCrumbsData()
             .flatMap(.Latest, transform: producerToTransformDataToJSON)
@@ -51,20 +44,12 @@ class CBCrumbFetcher: CBCrumbFetching {
         }
     }
     
-    private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumbEntity], CBNetworkError> {
+    private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumbResponseEntity], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
     
             let crumbs = json.flatMap { dict in
-                return CBCrumbEntity(
-                    userId: dict[kUserIdKey] as! Int,
-                    crumbId: dict[kCrumbIdKey] as! Int,
-                    title: dict[kTitleKey] as! String,
-                    imageURL: dict[kImageURLKey] as! String,
-                    longitude: Double(dict[kLongitudeKey] as! String)!,
-                    latitude: Double(dict[kLatitudeKey] as! String)!,
-                    createdOn: dict[kCreatedOnKey] as! String
-                )
+                return Mapper<CBCrumbResponseEntity>().map(dict)
             }
             
             observer.sendNext(crumbs)

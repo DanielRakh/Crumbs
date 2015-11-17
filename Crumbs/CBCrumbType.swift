@@ -7,13 +7,16 @@
 //
 
 
-protocol CBCrumbType {
+//TODO: CURRENTLY UNLINKED FROM TARGET
+
+protocol CBCrumbResponseType {
     
-    var userId: Int { get }
-    var crumbId: Int { get }
+    var id: UInt64 { get }
+    var username: String { get }
     var title: String { get }
     var imageURL: String { get }
     var longitude: Double { get }
     var latitude: Double { get }
-    var createdOn: String { get }
+    var createdTimestamp: String { get }
+    var updatedTimestamp: String { get }
 }

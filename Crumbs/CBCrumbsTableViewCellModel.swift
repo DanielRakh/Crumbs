@@ -11,15 +11,15 @@ import Foundation
 
 class CBCrumbsTableViewCellModel:CBCrumbsTableViewCellModeling {
     
-    var usernameText: String
-    var titleText: String
+    var usernameText: String?
+    var titleText: String?
     //    let crumbImage: UIImage
-    var timestampText: String
+    var timestampText: String?
     
-    init(crumb: CBCrumbEntity) {
-        usernameText = "\(crumb.userId)"
+    init(crumb: CBCrumbResponseEntity) {
+        usernameText = crumb.username
         titleText = crumb.title
-        timestampText = crumb.createdOn
+        timestampText = crumb.createdTimestamp
     }
     
 }

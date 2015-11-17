@@ -23,7 +23,7 @@ class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
     
     func startFetch() {
         
-        crumbsFetcher.fetchAllCrumbs().map { (crumbs:[CBCrumbEntity]) -> [CBCrumbsTableViewCellModeling] in
+        crumbsFetcher.fetchAllCrumbs().map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModeling] in
             crumbs.map { crumb in
                 return CBCrumbsTableViewCellModel(crumb: crumb)
             }

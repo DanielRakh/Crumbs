@@ -20,8 +20,8 @@ class CBCrumbsTableViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        crumbsFetcher = CBCrumbFetcher(networking: networking)
-        crumbsTableViewModel = CBCrumbsTableViewModel(crumbFetcher: crumbsFetcher)
+//        crumbsFetcher = CBCrumbFetcher(networking: networking)
+//        crumbsTableViewModel = CBCrumbsTableViewModel(crumbFetcher: crumbsFetcher)
     }
     
     override func tearDown() {

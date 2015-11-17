@@ -12,8 +12,7 @@
 		8E14C35D1BF65A0100C3F145 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35B1BF65A0100C3F145 /* Main.storyboard */; };
 		8E14C35F1BF65A0100C3F145 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C35E1BF65A0100C3F145 /* Assets.xcassets */; };
 		8E14C3621BF65A0100C3F145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E14C3601BF65A0100C3F145 /* LaunchScreen.storyboard */; };
-		8E14C37B1BF66E2400C3F145 /* CBCrumbEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */; };
-		8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */; };
+		8E14C37B1BF66E2400C3F145 /* CBCrumbResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14C37A1BF66E2400C3F145 /* CBCrumbResponseEntity.swift */; };
 		8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39C4061BF90F7500787394 /* CBCrumbCell.swift */; };
 		8E9422721BF9AE4600841AE4 /* CBCrumbFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */; };
 		8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */; };
@@ -23,10 +22,13 @@
 		8E94227F1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */; };
 		8E9422811BFA8CEB00841AE4 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422801BFA8CEB00841AE4 /* AppDelegateTests.swift */; };
 		8E9422831BFAAC2300841AE4 /* CBCrumbsTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422821BFAAC2300841AE4 /* CBCrumbsTableViewModelTests.swift */; };
+		8EDE1EEA1BFB9D780029DAD1 /* CBCrumbPostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EE91BFB9D780029DAD1 /* CBCrumbPostEntity.swift */; };
+		8EDE1EEC1BFBA8650029DAD1 /* CBCrumbsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EEB1BFBA8650029DAD1 /* CBCrumbsAPI.swift */; };
+		8EDE1EEE1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EED1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift */; };
+		8EDE1EF01BFBBBF10029DAD1 /* DummyCrumbsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EEF1BFBBBF10029DAD1 /* DummyCrumbsResponse.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */; };
-		8EFA22181BF938FB007ADEAF /* CBCrumbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */; };
 		8EFA221A1BF94674007ADEAF /* CBNetworkingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */; };
 		8EFA221C1BF952BA007ADEAF /* CBCrumbFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA221B1BF952BA007ADEAF /* CBCrumbFetcher.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +55,7 @@
 		8E14C3681BF65A0100C3F145 /* CrumbsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrumbsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E14C36E1BF65A0100C3F145 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E14C3771BF6623D00C3F145 /* CBCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCameraController.swift; sourceTree = "<group>"; };
-		8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbEntity.swift; sourceTree = "<group>"; };
+		8E14C37A1BF66E2400C3F145 /* CBCrumbResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbResponseEntity.swift; sourceTree = "<group>"; };
 		8E14C37C1BF66F6C00C3F145 /* CBCrumbType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbType.swift; sourceTree = "<group>"; };
 		8E39C4061BF90F7500787394 /* CBCrumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbCell.swift; sourceTree = "<group>"; };
 		8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetcherTests.swift; sourceTree = "<group>"; };
@@ -64,11 +66,14 @@
 		8E94227E1BFA479E00841AE4 /* CBCrumbsTableViewCellModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewCellModeling.swift; sourceTree = "<group>"; };
 		8E9422801BFA8CEB00841AE4 /* AppDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		8E9422821BFAAC2300841AE4 /* CBCrumbsTableViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModelTests.swift; sourceTree = "<group>"; };
+		8EDE1EE91BFB9D780029DAD1 /* CBCrumbPostEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbPostEntity.swift; sourceTree = "<group>"; };
+		8EDE1EEB1BFBA8650029DAD1 /* CBCrumbsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsAPI.swift; sourceTree = "<group>"; };
+		8EDE1EED1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbResponseEntityTests.swift; sourceTree = "<group>"; };
+		8EDE1EEF1BFBBBF10029DAD1 /* DummyCrumbsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyCrumbsResponse.swift; sourceTree = "<group>"; };
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingService.swift; sourceTree = "<group>"; };
 		8EFA22161BF938FB007ADEAF /* CrumbsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrumbsTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbTests.swift; sourceTree = "<group>"; };
 		8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingServiceTests.swift; sourceTree = "<group>"; };
 		8EFA221B1BF952BA007ADEAF /* CBCrumbFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetcher.swift; sourceTree = "<group>"; };
 		9BE2024831FAA55DAA374EA4 /* Pods-Crumbs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crumbs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Crumbs/Pods-Crumbs.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,8 +144,9 @@
 		8E14C36B1BF65A0100C3F145 /* CrumbsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8EDE1EEF1BFBBBF10029DAD1 /* DummyCrumbsResponse.swift */,
 				8E14C36E1BF65A0100C3F145 /* Info.plist */,
-				8EFA22171BF938FB007ADEAF /* CBCrumbTests.swift */,
+				8EDE1EED1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift */,
 				8EFA22191BF94674007ADEAF /* CBNetworkingServiceTests.swift */,
 				8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */,
 				8EFA22161BF938FB007ADEAF /* CrumbsTests-Bridging-Header.h */,
@@ -164,8 +170,10 @@
 		8E14C37E1BF670EF00C3F145 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8EDE1EEB1BFBA8650029DAD1 /* CBCrumbsAPI.swift */,
 				8E9422791BFA350200841AE4 /* Protocols */,
-				8E14C37A1BF66E2400C3F145 /* CBCrumbEntity.swift */,
+				8E14C37A1BF66E2400C3F145 /* CBCrumbResponseEntity.swift */,
+				8EDE1EE91BFB9D780029DAD1 /* CBCrumbPostEntity.swift */,
 				8EFA221B1BF952BA007ADEAF /* CBCrumbFetcher.swift */,
 			);
 			name = Model;
@@ -390,13 +398,14 @@
 				8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */,
 				8EFA221C1BF952BA007ADEAF /* CBCrumbFetcher.swift in Sources */,
 				8E39C4071BF90F7500787394 /* CBCrumbCell.swift in Sources */,
-				8E14C37D1BF66F6C00C3F145 /* CBCrumbType.swift in Sources */,
 				8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */,
 				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
-				8E14C37B1BF66E2400C3F145 /* CBCrumbEntity.swift in Sources */,
+				8E14C37B1BF66E2400C3F145 /* CBCrumbResponseEntity.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
 				8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */,
+				8EDE1EEC1BFBA8650029DAD1 /* CBCrumbsAPI.swift in Sources */,
 				8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */,
+				8EDE1EEA1BFB9D780029DAD1 /* CBCrumbPostEntity.swift in Sources */,
 				8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */,
 				8E14C3581BF65A0100C3F145 /* AppDelegate.swift in Sources */,
 			);
@@ -407,10 +416,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9422811BFA8CEB00841AE4 /* AppDelegateTests.swift in Sources */,
+				8EDE1EF01BFBBBF10029DAD1 /* DummyCrumbsResponse.swift in Sources */,
+				8EDE1EEE1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift in Sources */,
 				8E9422831BFAAC2300841AE4 /* CBCrumbsTableViewModelTests.swift in Sources */,
 				8EFA221A1BF94674007ADEAF /* CBNetworkingServiceTests.swift in Sources */,
 				8E9422721BF9AE4600841AE4 /* CBCrumbFetcherTests.swift in Sources */,
-				8EFA22181BF938FB007ADEAF /* CBCrumbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,9 @@
 import ReactiveCocoa
 import Foundation
 
-class CBNetworkingService: CBNetworking {
+    class CBNetworkingService: CBNetworking {
     
-    static let apiRef = "https://crumbs-app.herokuapp.com/api/v1"
-    static let postsEndPoint = "/posts"
-    
-    let crumbsURL = NSURL(string: apiRef + postsEndPoint)!
+    let crumbsURL = NSURL(string: CrumbsAPIV1.baseURL + CrumbsAPIV1.postsEndPoint)!
     
     let session = NSURLSession.sharedSession()
     

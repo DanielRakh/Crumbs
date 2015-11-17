@@ -10,6 +10,6 @@ import ReactiveCocoa
 
 protocol CBCrumbFetching {
     
-    func fetchAllCrumbs() -> SignalProducer<[CBCrumbEntity], CBNetworkError>
+    func fetchAllCrumbs() -> SignalProducer<[CBCrumbResponseEntity], CBNetworkError>
     
 }

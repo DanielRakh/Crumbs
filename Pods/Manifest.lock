@@ -1,4 +1,5 @@
 PODS:
+  - ObjectMapper (1.0.1)
   - ReactiveCocoa (4.0.0-alpha-3):
     - ReactiveCocoa/UI (= 4.0.0-alpha-3)
     - Result (~> 0.6-beta.4)
@@ -14,10 +15,12 @@ PODS:
   - Swinject (0.5)
 
 DEPENDENCIES:
+  - ObjectMapper (~> 1.0)
   - ReactiveCocoa (= 4.0.0-alpha-3)
   - Swinject (~> 0.5)
 
 SPEC CHECKSUMS:
+  ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
   ReactiveCocoa: f03dcfd385b0e4ee5b7a323f5e0b146a498e12d3
   Result: dc390d0b58f9ec43fcd536f1ebdd130803cc6cbc
   Swinject: 0bf92c3336808a69d162bcf8f338774640de518a

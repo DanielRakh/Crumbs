@@ -84,11 +84,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Crumbs/ObjectMapper.framework"
   install_framework "Pods-Crumbs/ReactiveCocoa.framework"
   install_framework "Pods-Crumbs/Result.framework"
   install_framework "Pods-Crumbs/Swinject.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Crumbs/ObjectMapper.framework"
   install_framework "Pods-Crumbs/ReactiveCocoa.framework"
   install_framework "Pods-Crumbs/Result.framework"
   install_framework "Pods-Crumbs/Swinject.framework"
