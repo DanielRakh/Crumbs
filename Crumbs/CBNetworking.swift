@@ -37,4 +37,6 @@ protocol CBNetworking {
     
     func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError>
     
+    func producerToRequestImage(url: String) -> SignalProducer<UIImage, CBNetworkError>
+    
 }

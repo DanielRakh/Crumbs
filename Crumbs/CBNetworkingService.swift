@@ -20,7 +20,6 @@ class CBNetworkingService: CBNetworking {
     
     func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError> {
         
-        
         return SignalProducer { observer, disposable in
             
             self.session.dataTaskWithURL(self.crumbsURL) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
@@ -40,6 +39,25 @@ class CBNetworkingService: CBNetworking {
                 observer.sendCompleted()
                 
                 }.resume()
+        }
+    }
+    
+    
+    func producerToRequestImage(url: String) -> SignalProducer<UIImage, CBNetworkError> {
+        
+        return SignalProducer { observer, disposable in
+            
+            self.session.dataTaskWithURL(NSURL(string: url)!) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                
+                guard error == nil else {
+                    observer.sendFailed(CBNetworkError.ResponseError(description: error!.localizedDescription))
+                    return
+                }
+                
+                observer.sendNext(UIImage(data: data!, scale: 0)!)
+                observer.sendCompleted()
+                
+            }.resume()
         }
     }
     
