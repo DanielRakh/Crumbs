@@ -10,6 +10,8 @@ import UIKit
 import Swinject
 //import CoreLocation
 
+//TODO: MAKE SURE TO MODIFY APP TRANSPORT SECURITY OR YOUR SHIT WILL GET REJECTED!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

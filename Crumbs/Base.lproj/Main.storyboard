@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AWw-UA-E0W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ck4-6b-KVC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Crumbs-->
+        <!--List-->
         <scene sceneID="a9O-nA-l5E">
             <objects>
-                <tableViewController storyboardIdentifier="CBCrumbsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4XH-ut-g2h" customClass="CBCrumbsTableViewController" customModule="Crumbs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CBCrumbsTableViewController" title="List" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4XH-ut-g2h" customClass="CBCrumbsTableViewController" customModule="Crumbs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="vlC-iH-yI2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +148,7 @@
                             <outlet property="delegate" destination="4XH-ut-g2h" id="Zaz-IX-UVb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Crumbs" id="Z8A-4L-1v3"/>
+                    <navigationItem key="navigationItem" title="List" id="69I-oa-PYA"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Kwt-Vi-SvS">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -166,29 +166,144 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lh1-bh-PZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787.5" y="-380"/>
+            <point key="canvasLocation" x="1687.5" y="-535"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NkP-CP-LQQ">
+        <!--Map-->
+        <scene sceneID="8NF-p4-qU1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWw-UA-E0W" sceneMemberID="viewController">
+                <viewController title="Map" id="2K9-Iv-0uP" customClass="CBCrumbsMapViewController" customModule="Crumbs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DhG-Eh-Go2"/>
+                        <viewControllerLayoutGuide type="bottom" id="FXU-XW-FWz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eDy-os-Fhf">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-Rr-uIe">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AyP-Rr-uIe" firstAttribute="leading" secondItem="eDy-os-Fhf" secondAttribute="leading" id="Ics-Hv-hsj"/>
+                            <constraint firstAttribute="trailing" secondItem="AyP-Rr-uIe" secondAttribute="trailing" id="UYO-RT-wqq"/>
+                            <constraint firstItem="AyP-Rr-uIe" firstAttribute="top" secondItem="eDy-os-Fhf" secondAttribute="top" id="bRQ-aU-sUa"/>
+                            <constraint firstAttribute="bottom" secondItem="AyP-Rr-uIe" secondAttribute="bottom" id="tQE-Go-EhH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="AyP-Rr-uIe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Ics-Hv-hsj"/>
+                                <exclude reference="UYO-RT-wqq"/>
+                                <exclude reference="bRQ-aU-sUa"/>
+                                <exclude reference="tQE-Go-EhH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="AyP-Rr-uIe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Ics-Hv-hsj"/>
+                                <include reference="UYO-RT-wqq"/>
+                                <include reference="bRQ-aU-sUa"/>
+                                <include reference="tQE-Go-EhH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="3YM-Dd-q6w">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="zku-83-yvV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mo8-es-ObG">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="CurrentLocationDefault"/>
+                                <state key="selected" image="CurrentLocationSelected"/>
+                                <state key="highlighted" image="CurrentLocationSelected"/>
+                                <connections>
+                                    <action selector="locationBarButtonItemDidTap:" destination="2K9-Iv-0uP" eventType="touchUpInside" id="dqO-PT-XVb"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="currentLocationButton" destination="Mo8-es-ObG" id="9G0-IO-Coz"/>
+                        <outlet property="mapView" destination="AyP-Rr-uIe" id="52f-gK-2FL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8a-OZ-pk9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687.5" y="189"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qo6-3k-MKS">
+            <objects>
+                <tabBarController id="Ck4-6b-KVC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YUE-4I-anL"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="XBF-57-3CW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="z40-KB-mRt" kind="relationship" relationship="viewControllers" id="TuQ-Ru-P3d"/>
+                        <segue destination="mBQ-93-cMY" kind="relationship" relationship="viewControllers" id="tIj-B3-4D9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ky7-B9-Y1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1.5" y="-125"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="qjm-SB-xnX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z40-KB-mRt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" id="ZsK-FX-LxI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aUe-5S-bFC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V2H-MQ-wL1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4XH-ut-g2h" kind="relationship" relationship="rootViewController" id="Kme-pC-iaS"/>
+                        <segue destination="4XH-ut-g2h" kind="relationship" relationship="rootViewController" id="wpa-yG-Dsg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cuG-Ca-kK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N4Z-zi-bXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-21" y="-380"/>
+            <point key="canvasLocation" x="769.5" y="-535"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="wxY-Us-DxM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mBQ-93-cMY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" id="KUV-0Z-2c2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ors-1B-pKL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2K9-Iv-0uP" kind="relationship" relationship="rootViewController" id="Fzo-tR-PMc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9U-gu-D3A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769.5" y="189"/>
         </scene>
     </scenes>
     <resources>
+        <image name="CurrentLocationDefault" width="15" height="15"/>
+        <image name="CurrentLocationSelected" width="15" height="15"/>
         <image name="ImagePlaceholder" width="100" height="100"/>
     </resources>
 </document>

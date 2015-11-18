@@ -14,7 +14,15 @@ class CBCrumbsTableViewController: UITableViewController {
         didSet {
             if let viewModel = viewModel {
                 viewModel.cellModels.producer
-                    .on(next: {_ in self.tableView.reloadData()})
+                    .on(started: {
+                        self.refreshControl?.beginRefreshing()
+                        }, disposed: {
+                           self.refreshControl?.endRefreshing()
+                        }, next: {_ in
+                            self.tableView.reloadData()
+                            self.refreshControl?.endRefreshing()
+
+                    })
                     .start()
             }
         }
@@ -23,6 +31,7 @@ class CBCrumbsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,9 +43,10 @@ class CBCrumbsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
     // MARK: - Table view data source
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if let viewModel = viewModel {
@@ -56,9 +66,14 @@ class CBCrumbsTableViewController: UITableViewController {
             cell.viewModel = nil
         }
         
-
         return cell
-        
+    }
+    
+    
+    //MARK: - Table View Refresh
+    
+    func handleRefresh(refreshControl:UIRefreshControl) {
+        viewModel?.startFetch()
     }
 
 

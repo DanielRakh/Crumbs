@@ -27,6 +27,7 @@
 		8EDE1EEE1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EED1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift */; };
 		8EDE1EF01BFBBBF10029DAD1 /* DummyCrumbsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EEF1BFBBBF10029DAD1 /* DummyCrumbsResponse.swift */; };
 		8EDE1EF21BFBE51F0029DAD1 /* RACUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EF11BFBE51E0029DAD1 /* RACUtil.swift */; };
+		8EDE1EF41BFC41F90029DAD1 /* CBCrumbsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE1EF31BFC41F90029DAD1 /* CBCrumbsMapViewController.swift */; };
 		8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */; };
 		8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22121BF930AB007ADEAF /* CBNetworking.swift */; };
 		8EFA22151BF93809007ADEAF /* CBNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */; };
@@ -72,6 +73,7 @@
 		8EDE1EED1BFBBBBA0029DAD1 /* CBCrumbResponseEntityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbResponseEntityTests.swift; sourceTree = "<group>"; };
 		8EDE1EEF1BFBBBF10029DAD1 /* DummyCrumbsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyCrumbsResponse.swift; sourceTree = "<group>"; };
 		8EDE1EF11BFBE51E0029DAD1 /* RACUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACUtil.swift; sourceTree = "<group>"; };
+		8EDE1EF31BFC41F90029DAD1 /* CBCrumbsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsMapViewController.swift; sourceTree = "<group>"; };
 		8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewController.swift; sourceTree = "<group>"; };
 		8EFA22121BF930AB007ADEAF /* CBNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworking.swift; sourceTree = "<group>"; };
 		8EFA22141BF93809007ADEAF /* CBNetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBNetworkingService.swift; sourceTree = "<group>"; };
@@ -162,9 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				8E14C35B1BF65A0100C3F145 /* Main.storyboard */,
+				8EDE1EF61BFC42090029DAD1 /* List */,
+				8EDE1EF51BFC41FD0029DAD1 /* Map */,
 				8E14C3771BF6623D00C3F145 /* CBCameraController.swift */,
-				8E39C4061BF90F7500787394 /* CBCrumbCell.swift */,
-				8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -224,6 +226,23 @@
 				8E94227A1BFA359800841AE4 /* CBCrumbFetching.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		8EDE1EF51BFC41FD0029DAD1 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				8EDE1EF31BFC41F90029DAD1 /* CBCrumbsMapViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		8EDE1EF61BFC42090029DAD1 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8E39C4061BF90F7500787394 /* CBCrumbCell.swift */,
+				8EFA220F1BF9281E007ADEAF /* CBCrumbsTableViewController.swift */,
+			);
+			name = List;
 			sourceTree = "<group>";
 		};
 		8EFA22111BF9306B007ADEAF /* Networking */ = {
@@ -405,6 +424,7 @@
 				8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */,
 				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
 				8E14C37B1BF66E2400C3F145 /* CBCrumbResponseEntity.swift in Sources */,
+				8EDE1EF41BFC41F90029DAD1 /* CBCrumbsMapViewController.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
 				8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */,
 				8EDE1EEC1BFBA8650029DAD1 /* CBCrumbsAPI.swift in Sources */,

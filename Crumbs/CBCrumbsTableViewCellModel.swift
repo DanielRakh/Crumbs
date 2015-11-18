@@ -12,11 +12,9 @@ import ReactiveCocoa
 
 class CBCrumbsTableViewCellModel:NSObject, CBCrumbsTableViewCellModeling {
     
-    
     var usernameText: String?
     var titleText: String?
     var timestampText: String?
-    
     
     private let networkService: CBNetworking
     private var imageURL: String?
