@@ -30,6 +30,7 @@ class CBCrumbsMapViewController: UIViewController {
     
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         bindSignals()
     }
     
@@ -39,7 +40,15 @@ class CBCrumbsMapViewController: UIViewController {
             .producer
             .observeOn(UIScheduler())
             .on(next: {
-                self.mapView.showsUserLocation = ($0 as! NSNumber) == true ? true : false
+                
+                if ($0 as! NSNumber) == true {
+                    self.mapView.showsUserLocation = true
+                    self.locationManager.startUpdatingLocation()
+            
+                } else {
+                    self.locationManager.stopUpdatingLocation()
+                    self.mapView.showsUserLocation = false
+                }
             })
             .start()
         
@@ -50,4 +59,11 @@ class CBCrumbsMapViewController: UIViewController {
 
 extension CBCrumbsMapViewController : CLLocationManagerDelegate {
     
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.first!
+        self.mapView.centerCoordinate = location.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
+        self.mapView.setRegion(region, animated: true)
+    }
 }
