@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveCocoa
 import ObjectMapper
+import RealmSwift
 
 
 class CBCrumbFetcher: CBCrumbFetching {
@@ -48,10 +49,24 @@ class CBCrumbFetcher: CBCrumbFetching {
     private func producerToTransformJSONToCrumbItems(json:[[String : AnyObject]]) -> SignalProducer<[CBCrumbResponseEntity], CBNetworkError> {
         
         return SignalProducer { observer, disposable in
-    
-            let crumbs = json.flatMap { dict in
+
+            let crumbs = json.flatMap { (dict:[String : AnyObject]) in
                 return Mapper<CBCrumbResponseEntity>().map(dict)
             }
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    for crumb in crumbs {
+                        realm.add(crumb, update: true)
+                    }
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            
+            
             
             observer.sendNext(crumbs)
             observer.sendCompleted()

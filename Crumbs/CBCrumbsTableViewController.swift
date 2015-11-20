@@ -11,6 +11,7 @@ import UIKit
 class CBCrumbsTableViewController: UITableViewController {
     
     var viewModel:CBCrumbsTableViewModeling? {
+        
         didSet {
             if let viewModel = viewModel {
                 viewModel.cellModels.producer
