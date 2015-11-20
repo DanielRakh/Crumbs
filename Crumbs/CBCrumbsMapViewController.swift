@@ -12,7 +12,11 @@ import CoreLocation
 import ReactiveCocoa
 
 class CBCrumbsMapViewController: UIViewController {
-
+    
+    
+    let kDistanceMeters:CLLocationDistance = 500
+    var shouldInitiallyZoom = true
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var currentLocationButton: UIButton!
     
@@ -21,49 +25,113 @@ class CBCrumbsMapViewController: UIViewController {
     
     
     @IBAction func locationBarButtonItemDidTap(sender: AnyObject) {
-        self.currentLocationButton.selected = !self.currentLocationButton.selected
+        zoomIntoCurrentLocation()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        // Delegate Setup
+        mapView.delegate = self
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+
         bindSignals()
+        setupLocationManager()
     }
+    
+    
+    func setupLocationManager() {
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        if (CLLocationManager.authorizationStatus() == .NotDetermined) {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            mapView.showsUserLocation = true
+            zoomIntoCurrentLocation()
+        }
+        
+        
+    }
+    
     
     func bindSignals() {
         
-        DynamicProperty(object: currentLocationButton, keyPath: "selected")
-            .producer
-            .observeOn(UIScheduler())
-            .on(next: {
-                
-                if ($0 as! NSNumber) == true {
-                    self.mapView.showsUserLocation = true
-                    self.locationManager.startUpdatingLocation()
-            
-                } else {
-                    self.locationManager.stopUpdatingLocation()
-                    self.mapView.showsUserLocation = false
-                }
-            })
-            .start()
         
+//        let btnaction = CocoaAction(self.currentLocationButton
+//        
+//        
+//        DynamicProperty(object: currentLocationButton, keyPath: "selected")
+//            .producer
+//            .observeOn(UIScheduler())
+//            .on(next: {
+//                self.shouldZoom = ($0 as! NSNumber) == true ?  true : false
+//                self.mapView.showsUserLocation = ($0 as! NSNumber) == true ? true : false
+//            })
+//            .start()
         
+    }
+    
+    
+    // Helpers
+    
+    func zoomIntoCurrentLocation() {
+        if self.mapView.userLocation.location != nil {
+            zoomToCurrentLocationOnMap(self.mapView, locationCoordinate: self.mapView.userLocation.coordinate, regionDistance: (kDistanceMeters, kDistanceMeters))
+        }
+    }
+    
+
+}
+
+
+
+extension CBCrumbsMapViewController : MKMapViewDelegate {
+
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        
+        if shouldInitiallyZoom {
+            zoomToCurrentLocationOnMap(mapView, locationCoordinate: userLocation.coordinate, regionDistance: (kDistanceMeters, kDistanceMeters))
+            shouldInitiallyZoom = !shouldInitiallyZoom
+        }
+        
+    }
+    
+    
+    func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+        print(error)
     }
 }
 
 
 extension CBCrumbsMapViewController : CLLocationManagerDelegate {
     
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+ 
+        print("location manager")
         
         let location = locations.first!
-        self.mapView.centerCoordinate = location.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
-        self.mapView.setRegion(region, animated: true)
+        
+//        zoomToCurrentLocationOnMap(mapView, locationCoordinate: location.coordinate, regionDistance: (1500,1500))
+
+        
     }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    
+    
+    // Helpers
+    
+    func zoomToCurrentLocationOnMap(mapView:MKMapView, locationCoordinate:CLLocationCoordinate2D, regionDistance: (lat:CLLocationDistance, long:CLLocationDistance)) {
+        
+        mapView.centerCoordinate = locationCoordinate
+        let region = MKCoordinateRegionMakeWithDistance(locationCoordinate, regionDistance.lat, regionDistance.long)
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
 }

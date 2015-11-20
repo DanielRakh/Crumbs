@@ -177,6 +177,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FXU-XW-FWz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eDy-os-Fhf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-Rr-uIe">
@@ -217,7 +218,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="3YM-Dd-q6w">
                         <barButtonItem key="leftBarButtonItem" style="done" id="zku-83-yvV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mo8-es-ObG">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mo8-es-ObG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
