@@ -12,21 +12,18 @@ class CBCrumbAnnotation: NSObject, MKAnnotation {
     
     let coordinate: CLLocationCoordinate2D
     let radius: CLLocationDistance
-    
+    let id: Int
     var title: String?
-    var image: UIImage?
     var subtitle: String?
-    var identifier:String?
     
     
-    init(coordinate: CLLocationCoordinate2D, radius:CLLocationDistance, image:UIImage?, identifier:String?, title:String?, subtitle:String?) {
+    init(coordinate: CLLocationCoordinate2D, radius:CLLocationDistance, id:Int, title:String?, subtitle:String?) {
         self.coordinate = coordinate
         self.radius = radius
+        self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.image = image
-        self.identifier = identifier
-        
+    
         super.init()
     }
     

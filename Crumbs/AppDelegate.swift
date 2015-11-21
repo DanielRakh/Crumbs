@@ -33,10 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         container.register(CBCrumbsTableViewModeling.self) { r in
             CBCrumbsTableViewModel(crumbFetcher: r.resolve(CBCrumbFetching.self)!, networking: r.resolve(CBNetworking.self)!)
         }
+        container.register(CBCrumbsMapViewModeling.self) { r in
+            CBCrumbsMapViewModel()
+        }
         
         // Views
         container.registerForStoryboard(CBCrumbsTableViewController.self) { r, c in
             c.viewModel = r.resolve(CBCrumbsTableViewModeling.self)!
+        }
+        
+        container.registerForStoryboard(CBCrumbsMapViewController.self) { r, c in
+            c.viewModel = r.resolve(CBCrumbsMapViewModeling.self)!
+            
         }
         
         return container

@@ -8,6 +8,7 @@
 
 import ObjectMapper
 import RealmSwift
+import MapKit
 
 class CBCrumbResponseEntity : Object, Mappable {
 

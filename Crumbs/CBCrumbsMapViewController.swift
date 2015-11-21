@@ -13,24 +13,41 @@ import ReactiveCocoa
 import RealmSwift
 
 class CBCrumbsMapViewController: UIViewController {
+    
+    
+    private let kDistanceMeters:CLLocationDistance = 500
+    private var shouldInitiallyZoom = true
+    private var isMonitoring = false
+    
+    private var crumbAnnotations = [CBCrumbAnnotation]()
+    private let locationManager = CLLocationManager()
 
     
-    let kDistanceMeters:CLLocationDistance = 500
-    var shouldInitiallyZoom = true
     
-    let realm = try! Realm()
-    var crumbs = try! Realm().objects(CBCrumbResponseEntity)
-    
-    var isMonitoring = false
-    var crumbAnnotations = [CBCrumbAnnotation]()
-    
+    var viewModel:CBCrumbsMapViewModeling? {
+        
+        didSet {
+            
+            if let viewModel = viewModel {
+                
+                viewModel.crumbAnnotations.producer
+                    .on(next: { _ in
+                        self.crumbAnnotations = viewModel.crumbAnnotations.value
+                        self.mapView?.addAnnotations(viewModel.crumbAnnotations.value)
+                    }).start()
+                
+                viewModel.crumbAnnotations.producer
+                    .on(next: {_ in
+                        self.mapView?.addOverlays(viewModel.crumbOverlays.value)
+                    }).start()
+
+            }
+        }
+    }
     
     @IBOutlet weak var monitoringButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var currentLocationButton: UIButton!
-    
-    
-    private let locationManager = CLLocationManager()
     
     
     @IBAction func locationBarButtonItemDidTap(sender: AnyObject) {
@@ -39,20 +56,16 @@ class CBCrumbsMapViewController: UIViewController {
     
     @IBAction func monitoringButtonDidTap(sender: AnyObject) {
         
-        print("PRESS")
-        
         if isMonitoring == false {
             
             self.monitoringButton.setTitle("Stop Monitoring", forState: .Normal)
             for annotation in crumbAnnotations {
                 startMonitoringAnnotation(annotation)
             }
-        
-            showSimpleAlertWithTitle("Monitoring started bruh!", message: "Fingers crossed.", viewController: self)
-    
-            isMonitoring = true
             
-            print(self.mapView.annotations)
+            showSimpleAlertWithTitle("Monitoring started bruh!", message: "Fingers crossed.", viewController: self)
+            
+            isMonitoring = true
             
         } else {
             
@@ -64,11 +77,8 @@ class CBCrumbsMapViewController: UIViewController {
             }
             isMonitoring = false
             
-            print(self.mapView.annotations)
         }
     }
-    
-    
     
     
     override func viewDidLoad() {
@@ -80,35 +90,11 @@ class CBCrumbsMapViewController: UIViewController {
         mapView.delegate = self
         locationManager.delegate = self
         
+        viewModel?.fetchAnnotations()
         setupLocationManager()
-        addAnnotations(crumbs)
-        
         
     }
-
     
-    func addAnnotations(crumbs:Results<CBCrumbResponseEntity>) {
-        for crumb in crumbs {
-            
-            let radius = 15.0
-        
-            let annotation = CBCrumbAnnotation(coordinate: CLLocationCoordinate2DMake(crumb.latitude, crumb.longitude), radius:radius , image:nil, identifier:"\(crumb.id)", title: crumb.title!, subtitle: "Radius: \(radius)m - On Entry")
-            
-            mapView?.addOverlay(MKCircle(centerCoordinate: annotation.coordinate, radius: annotation.radius))
-           
-//            networkService.producerToRequestImage(crumb.imageURL!).startOn(QueueScheduler.mainQueueScheduler)
-//                .takeUntil(self.racutil_willDeallocProducer)
-//                .on(next: {
-//                    annotation.image = $0
-//                }).observeOn(UIScheduler())
-//                .start()
-            
-            
-            self.mapView.addAnnotation(annotation)
-            self.crumbAnnotations.append(annotation)
-        }
-        
-    }
     
     
     func setupLocationManager() {
@@ -128,7 +114,7 @@ class CBCrumbsMapViewController: UIViewController {
     
     func regionWithAnnotation(annotation: CBCrumbAnnotation) -> CLCircularRegion {
         
-        let region = CLCircularRegion(center: annotation.coordinate, radius: annotation.radius, identifier: annotation.identifier!)
+        let region = CLCircularRegion(center: annotation.coordinate, radius: annotation.radius, identifier: "\(annotation.id)")
         region.notifyOnEntry = true
         return region
     }
@@ -159,8 +145,8 @@ class CBCrumbsMapViewController: UIViewController {
             guard let circularRegion = region as? CLCircularRegion else {
                 return
             }
-        
-            guard circularRegion.identifier == annotation.identifier else {
+            
+            guard circularRegion.identifier == "\(annotation.id)" else {
                 return
             }
             
@@ -169,7 +155,7 @@ class CBCrumbsMapViewController: UIViewController {
     }
     
     
-
+    
     
     
     // Helpers
@@ -224,19 +210,20 @@ extension CBCrumbsMapViewController : MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-
+        annotationView?.detailCalloutAccessoryView = UIImageView(image: nil)
+        
         return annotationView
     }
     
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-
+        
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.lineWidth = 1.0
         circleRenderer.strokeColor = UIColor.purpleColor()
         circleRenderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.4)
         return circleRenderer
- 
+        
     }
     
     

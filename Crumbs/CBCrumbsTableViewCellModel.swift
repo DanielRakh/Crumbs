@@ -26,8 +26,8 @@ class CBCrumbsTableViewCellModel:NSObject, CBCrumbsTableViewCellModeling {
         titleText = crumb.title
         timestampText = crumb.createdTimestamp
         imageURL = crumb.imageURL
-        
-        self.networkService = networking
+        networkService = networking
+        super.init()
     }
     
     func getCrumbImage() -> SignalProducer<UIImage?, NoError> {

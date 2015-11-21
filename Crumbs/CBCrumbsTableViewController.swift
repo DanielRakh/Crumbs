@@ -29,7 +29,7 @@ class CBCrumbsTableViewController: UITableViewController {
             }
         }
     }
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

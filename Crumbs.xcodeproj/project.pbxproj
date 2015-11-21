@@ -18,6 +18,8 @@
 		8E53E06F1C00166300706F8B /* CBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53E06E1C00166300706F8B /* CBUtils.swift */; };
 		8E53E0711C0029D900706F8B /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 8E53E0701C0029D900706F8B /* TestLocations.gpx */; };
 		8E53E0731C003D6000706F8B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E53E0721C003D6000706F8B /* MapKit.framework */; };
+		8E53E0751C01014600706F8B /* CBCrumbsMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53E0741C01014600706F8B /* CBCrumbsMapViewModel.swift */; };
+		8E53E0771C0101BF00706F8B /* CBCrumbsMapViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53E0761C0101BF00706F8B /* CBCrumbsMapViewModeling.swift */; };
 		8E9422721BF9AE4600841AE4 /* CBCrumbFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */; };
 		8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */; };
 		8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */; };
@@ -68,6 +70,8 @@
 		8E53E06E1C00166300706F8B /* CBUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBUtils.swift; sourceTree = "<group>"; };
 		8E53E0701C0029D900706F8B /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
 		8E53E0721C003D6000706F8B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8E53E0741C01014600706F8B /* CBCrumbsMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsMapViewModel.swift; sourceTree = "<group>"; };
+		8E53E0761C0101BF00706F8B /* CBCrumbsMapViewModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsMapViewModeling.swift; sourceTree = "<group>"; };
 		8E9422711BF9AE4600841AE4 /* CBCrumbFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbFetcherTests.swift; sourceTree = "<group>"; };
 		8E9422731BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModeling.swift; sourceTree = "<group>"; };
 		8E9422751BFA338B00841AE4 /* CBCrumbsTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCrumbsTableViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				8EDE1EF31BFC41F90029DAD1 /* CBCrumbsMapViewController.swift */,
+				8E53E0741C01014600706F8B /* CBCrumbsMapViewModel.swift */,
+				8E53E0761C0101BF00706F8B /* CBCrumbsMapViewModeling.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				8E9422761BFA338B00841AE4 /* CBCrumbsTableViewModel.swift in Sources */,
 				8E94227B1BFA359800841AE4 /* CBCrumbFetching.swift in Sources */,
 				8E14C37B1BF66E2400C3F145 /* CBCrumbResponseEntity.swift in Sources */,
+				8E53E0751C01014600706F8B /* CBCrumbsMapViewModel.swift in Sources */,
 				8EDE1EF41BFC41F90029DAD1 /* CBCrumbsMapViewController.swift in Sources */,
 				8EFA22101BF9281E007ADEAF /* CBCrumbsTableViewController.swift in Sources */,
 				8E94227D1BFA478200841AE4 /* CBCrumbsTableViewCellModel.swift in Sources */,
@@ -454,6 +461,7 @@
 				8EFA22131BF930AB007ADEAF /* CBNetworking.swift in Sources */,
 				8EDE1EEA1BFB9D780029DAD1 /* CBCrumbPostEntity.swift in Sources */,
 				8E9422741BFA335C00841AE4 /* CBCrumbsTableViewModeling.swift in Sources */,
+				8E53E0771C0101BF00706F8B /* CBCrumbsMapViewModeling.swift in Sources */,
 				8E53E06F1C00166300706F8B /* CBUtils.swift in Sources */,
 				8E14C3581BF65A0100C3F145 /* AppDelegate.swift in Sources */,
 			);
