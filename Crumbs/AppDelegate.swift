@@ -8,14 +8,18 @@
 
 import UIKit
 import Swinject
-//import CoreLocation
+import CoreLocation
 
 //TODO: MAKE SURE TO MODIFY APP TRANSPORT SECURITY OR YOUR SHIT WILL GET REJECTED!
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    
+    let locationManager = CLLocationManager()
+    
+    
     var container: Container! {
         let container = Container()
         
@@ -59,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-//        locationManager.delegate = self
-//        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
 //        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
 //        UIApplication.sharedApplication().cancelAllLocalNotifications()
@@ -68,30 +72,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-//    
-//    func handleRegionEvent(region: CLRegion) {
-//        if UIApplication.sharedApplication().applicationState == .Active {
-//            if let message = notefromRegionIdentifier(region.identifier) {
-//                if let viewController = window?.rootViewController {
-//                    if viewController is CBCameraController {
-//                        (viewController as! CBCameraController) .presentAlertWithMessage(message)
-//                    }
-//                }
-//            }
-//        } else {
-//            // Otherwise present a local notification
-//            let notification = UILocalNotification()
-//            notification.alertBody = notefromRegionIdentifier(region.identifier)
-//            notification.soundName = "Default";
-//            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-//        }
-//    }
-//    
-//    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//        if region is CLCircularRegion {
-//            handleRegionEvent(region)
-//        }
-//    }
+    
+    func handleReigonEvent(region: CLRegion!) {
+        print("Geofence triggered")
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleReigonEvent(region)
+        }
+    }
+    
+    
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

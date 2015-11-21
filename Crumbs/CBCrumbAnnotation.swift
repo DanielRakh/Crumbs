@@ -16,14 +16,16 @@ class CBCrumbAnnotation: NSObject, MKAnnotation {
     var title: String?
     var image: UIImage?
     var subtitle: String?
+    var identifier:String?
     
     
-    init(coordinate: CLLocationCoordinate2D, radius:CLLocationDistance, image:UIImage?, title:String?, subtitle:String?) {
+    init(coordinate: CLLocationCoordinate2D, radius:CLLocationDistance, image:UIImage?, identifier:String?, title:String?, subtitle:String?) {
         self.coordinate = coordinate
         self.radius = radius
         self.title = title
         self.subtitle = subtitle
         self.image = image
+        self.identifier = identifier
         
         super.init()
     }

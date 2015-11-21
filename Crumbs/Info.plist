@@ -29,6 +29,11 @@
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Crumbs requires access to your phone’s location to notify you when you enter or leave a geofence.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

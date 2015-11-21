@@ -13,19 +13,19 @@ import ReactiveCocoa
 import RealmSwift
 
 class CBCrumbsMapViewController: UIViewController {
-    
-    let networkService = CBNetworkingService()
-    
+
     
     let kDistanceMeters:CLLocationDistance = 500
     var shouldInitiallyZoom = true
     
     let realm = try! Realm()
     var crumbs = try! Realm().objects(CBCrumbResponseEntity)
-//    var crumbsAnnotations = [CBCrumbAnnotation]()
+    
+    var isMonitoring = false
+    var crumbAnnotations = [CBCrumbAnnotation]()
     
     
-    
+    @IBOutlet weak var monitoringButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var currentLocationButton: UIButton!
     
@@ -37,8 +37,44 @@ class CBCrumbsMapViewController: UIViewController {
         zoomIntoCurrentLocation()
     }
     
+    @IBAction func monitoringButtonDidTap(sender: AnyObject) {
+        
+        print("PRESS")
+        
+        if isMonitoring == false {
+            
+            self.monitoringButton.setTitle("Stop Monitoring", forState: .Normal)
+            for annotation in crumbAnnotations {
+                startMonitoringAnnotation(annotation)
+            }
+        
+            showSimpleAlertWithTitle("Monitoring started bruh!", message: "Fingers crossed.", viewController: self)
+    
+            isMonitoring = true
+            
+            print(self.mapView.annotations)
+            
+        } else {
+            
+            showSimpleAlertWithTitle("Monitoring stopped bruh!", message: "Fuck off!", viewController: self)
+            
+            self.monitoringButton.setTitle("Start Monitoring", forState: .Normal)
+            for annotation in crumbAnnotations {
+                stopMonitoringAnnotation(annotation)
+            }
+            isMonitoring = false
+            
+            print(self.mapView.annotations)
+        }
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        monitoringButton.layer.cornerRadius = 19.0
         
         // Delegate Setup
         mapView.delegate = self
@@ -53,8 +89,10 @@ class CBCrumbsMapViewController: UIViewController {
     
     func addAnnotations(crumbs:Results<CBCrumbResponseEntity>) {
         for crumb in crumbs {
+            
+            let radius = 15.0
         
-            let annotation = CBCrumbAnnotation(coordinate: CLLocationCoordinate2DMake(crumb.latitude, crumb.longitude), radius:50.0 , image:nil , title: crumb.title!, subtitle: nil)
+            let annotation = CBCrumbAnnotation(coordinate: CLLocationCoordinate2DMake(crumb.latitude, crumb.longitude), radius:radius , image:nil, identifier:"\(crumb.id)", title: crumb.title!, subtitle: "Radius: \(radius)m - On Entry")
             
             mapView?.addOverlay(MKCircle(centerCoordinate: annotation.coordinate, radius: annotation.radius))
            
@@ -67,6 +105,7 @@ class CBCrumbsMapViewController: UIViewController {
             
             
             self.mapView.addAnnotation(annotation)
+            self.crumbAnnotations.append(annotation)
         }
         
     }
@@ -87,12 +126,66 @@ class CBCrumbsMapViewController: UIViewController {
     }
     
     
+    func regionWithAnnotation(annotation: CBCrumbAnnotation) -> CLCircularRegion {
+        
+        let region = CLCircularRegion(center: annotation.coordinate, radius: annotation.radius, identifier: annotation.identifier!)
+        region.notifyOnEntry = true
+        return region
+    }
+    
+    
+    func startMonitoringAnnotation(annotation: CBCrumbAnnotation) {
+        
+        
+        guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) else {
+            showSimpleAlertWithTitle("Error", message: "Geofencing is not supported on this device!", viewController: self)
+            return
+        }
+        
+        guard CLLocationManager.authorizationStatus() == .AuthorizedAlways else {
+            showSimpleAlertWithTitle("Warning", message: "Your crumb is saved but will only be activated once you grant the app permission to access the device location.", viewController: self)
+            return
+        }
+        
+        let region = regionWithAnnotation(annotation)
+        locationManager.startMonitoringForRegion(region)
+        
+    }
+    
+    
+    func stopMonitoringAnnotation(annotation:CBCrumbAnnotation) {
+        
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion else {
+                return
+            }
+        
+            guard circularRegion.identifier == annotation.identifier else {
+                return
+            }
+            
+            locationManager.stopMonitoringForRegion(circularRegion)
+        }
+    }
+    
+    
+
+    
+    
     // Helpers
     
     func zoomIntoCurrentLocation() {
         if self.mapView.userLocation.location != nil {
             zoomToCurrentLocationOnMap(self.mapView, locationCoordinate: self.mapView.userLocation.coordinate, regionDistance: (kDistanceMeters, kDistanceMeters))
         }
+    }
+    
+    func zoomToCurrentLocationOnMap(mapView:MKMapView, locationCoordinate:CLLocationCoordinate2D, regionDistance: (lat:CLLocationDistance, long:CLLocationDistance)) {
+        
+        mapView.centerCoordinate = locationCoordinate
+        let region = MKCoordinateRegionMakeWithDistance(locationCoordinate, regionDistance.lat, regionDistance.long)
+        mapView.setRegion(region, animated: true)
+        
     }
 }
 
@@ -122,22 +215,16 @@ extension CBCrumbsMapViewController : MKMapViewDelegate {
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
         
-        guard annotationView == nil else {
-            print("GUARD")
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.animatesDrop = true
+        }
+        else {
             annotationView?.annotation = annotation
-//            annotationView?.image = (annotation as! CBCrumbAnnotation).image
-//            print(annotationView?.image)
-
-            return annotationView
         }
         
-        annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//        annotationView?.image = (annotation as! CBCrumbAnnotation).image
-        annotationView?.canShowCallout = true
-        annotationView?.animatesDrop = true
-        
-//        print(annotationView?.image)
-        
+
         return annotationView
     }
     
@@ -156,39 +243,14 @@ extension CBCrumbsMapViewController : MKMapViewDelegate {
 }
 
 
-
-
-
-
-
 extension CBCrumbsMapViewController : CLLocationManagerDelegate {
     
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        print("location manager")
-        
-        let location = locations.first!
-        
-        //        zoomToCurrentLocationOnMap(mapView, locationCoordinate: location.coordinate, regionDistance: (1500,1500))
-        
-        
+    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+        showSimpleAlertWithTitle("Error! Monitoring failed for region: \(region?.identifier)", message: "\(error.localizedDescription)", viewController: self)
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error)
-    }
-    
-    
-    
-    // Helpers
-    
-    func zoomToCurrentLocationOnMap(mapView:MKMapView, locationCoordinate:CLLocationCoordinate2D, regionDistance: (lat:CLLocationDistance, long:CLLocationDistance)) {
-        
-        mapView.centerCoordinate = locationCoordinate
-        let region = MKCoordinateRegionMakeWithDistance(locationCoordinate, regionDistance.lat, regionDistance.long)
-        mapView.setRegion(region, animated: true)
-        
+        showSimpleAlertWithTitle("Error! Location Manager faild with the following error:", message: "\(error.localizedDescription)", viewController: self)
     }
     
 }

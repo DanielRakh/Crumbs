@@ -10,6 +10,7 @@ import UIKit
 
 class CBCrumbsTableViewController: UITableViewController {
     
+    
     var viewModel:CBCrumbsTableViewModeling? {
         
         didSet {
@@ -33,39 +34,33 @@ class CBCrumbsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel?.startFetch()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if let viewModel = viewModel {
-            return viewModel.cellModels.value.count
+        
+        guard let viewModel = viewModel else {
+            return 0
         }
         
-        return 0
+        return viewModel.cellModels.value.count
+
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CrumbCell", forIndexPath: indexPath) as! CBCrumbCell
         
-        if let viewModel = viewModel {
-            cell.viewModel = viewModel.cellModels.value[indexPath.row]
-        } else {
+        guard let viewModel = viewModel else {
             cell.viewModel = nil
+            return cell
         }
+        
+        cell.viewModel = viewModel.cellModels.value[indexPath.row]
+        
         
         return cell
     }

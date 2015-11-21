@@ -48,7 +48,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="pjJ-B0-3ip">
                                                     <rect key="frame" x="108" y="0.0" width="124" height="57"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6D0-sG-fqP">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6D0-sG-fqP">
                                                             <rect key="frame" x="0.0" y="0.0" width="36" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -73,14 +73,17 @@
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstItem="lrg-gP-syB" firstAttribute="top" secondItem="6D0-sG-fqP" secondAttribute="bottom" constant="4" id="KBL-J7-QRc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="6D0-sG-fqP" secondAttribute="trailing" id="URW-CN-ivy"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="URW-CN-ivy"/>
                                                             <exclude reference="KBL-J7-QRc"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
+                                                            <include reference="URW-CN-ivy"/>
                                                             <include reference="KBL-J7-QRc"/>
                                                         </mask>
                                                     </variation>
@@ -184,10 +187,39 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FY-mh-XZe">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="8Oj-y7-zOY"/>
+                                    <constraint firstAttribute="width" constant="220" id="Yei-Tw-0RP"/>
+                                </constraints>
+                                <state key="normal" title="Start Monitoring">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8Oj-y7-zOY"/>
+                                        <exclude reference="Yei-Tw-0RP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="8Oj-y7-zOY"/>
+                                        <include reference="Yei-Tw-0RP"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="monitoringButtonDidTap:" destination="2K9-Iv-0uP" eventType="touchUpInside" id="On1-lE-UcW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1FY-mh-XZe" firstAttribute="centerX" secondItem="AyP-Rr-uIe" secondAttribute="centerX" id="9kQ-Za-Jfr"/>
+                            <constraint firstItem="1FY-mh-XZe" firstAttribute="top" secondItem="eDy-os-Fhf" secondAttribute="topMargin" constant="96" id="9ql-84-rGx"/>
                             <constraint firstItem="AyP-Rr-uIe" firstAttribute="leading" secondItem="eDy-os-Fhf" secondAttribute="leading" id="Ics-Hv-hsj"/>
                             <constraint firstAttribute="trailing" secondItem="AyP-Rr-uIe" secondAttribute="trailing" id="UYO-RT-wqq"/>
                             <constraint firstItem="AyP-Rr-uIe" firstAttribute="top" secondItem="eDy-os-Fhf" secondAttribute="top" id="bRQ-aU-sUa"/>
@@ -196,23 +228,29 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="AyP-Rr-uIe"/>
+                                <exclude reference="1FY-mh-XZe"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Ics-Hv-hsj"/>
                                 <exclude reference="UYO-RT-wqq"/>
                                 <exclude reference="bRQ-aU-sUa"/>
                                 <exclude reference="tQE-Go-EhH"/>
+                                <exclude reference="9kQ-Za-Jfr"/>
+                                <exclude reference="9ql-84-rGx"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="AyP-Rr-uIe"/>
+                                <include reference="1FY-mh-XZe"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Ics-Hv-hsj"/>
                                 <include reference="UYO-RT-wqq"/>
                                 <include reference="bRQ-aU-sUa"/>
                                 <include reference="tQE-Go-EhH"/>
+                                <include reference="9kQ-Za-Jfr"/>
+                                <include reference="9ql-84-rGx"/>
                             </mask>
                         </variation>
                     </view>
@@ -235,6 +273,7 @@
                     <connections>
                         <outlet property="currentLocationButton" destination="Mo8-es-ObG" id="9G0-IO-Coz"/>
                         <outlet property="mapView" destination="AyP-Rr-uIe" id="52f-gK-2FL"/>
+                        <outlet property="monitoringButton" destination="1FY-mh-XZe" id="cGT-St-e3Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8a-OZ-pk9" userLabel="First Responder" sceneMemberID="firstResponder"/>

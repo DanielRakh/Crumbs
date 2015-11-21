@@ -36,6 +36,7 @@ class CBCrumbCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        crumbImageView.layer.cornerRadius = 4.0
         // Initialization code
     }
 

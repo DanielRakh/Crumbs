@@ -13,7 +13,6 @@ class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
     var cellModels: AnyProperty<[CBCrumbsTableViewCellModeling]> {
         return AnyProperty(_cellModels)
     }
-    
     private let _cellModels = MutableProperty<[CBCrumbsTableViewCellModeling]>([])
     private let crumbsFetcher: CBCrumbFetching
     private let networkService: CBNetworking
@@ -29,6 +28,9 @@ class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
         crumbsFetcher.fetchAllCrumbs()
             .startOn(QueueScheduler.mainQueueScheduler)
             .map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModeling] in
+                
+                //TODO: AT THIS POINT I SHOULD BE GETTING REALM SHIT.
+                
                 
                 crumbs.map { crumb in
                     return CBCrumbsTableViewCellModel(crumb: crumb, networking: self.networkService)

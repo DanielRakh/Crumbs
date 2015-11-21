@@ -14,6 +14,8 @@ import Foundation
     let crumbsURL = NSURL(string: CrumbsAPIV1.baseURL + CrumbsAPIV1.postsEndPoint)!
     
     let session = NSURLSession.sharedSession()
+        
+        
     
     func producerToRequestAllCrumbsData() -> SignalProducer<NSData?, CBNetworkError> {
         
@@ -31,14 +33,12 @@ import Foundation
                     observer.sendFailed(CBNetworkError.StatusCodeError(statusCode: "\(statusCode)"))
                     return
                 }
-                
-                
-                
+    
                 observer.sendNext(data)
                 observer.sendCompleted()
                 
                 }.resume()
-        }
+        }.retry(2)
     }
     
     
