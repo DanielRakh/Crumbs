@@ -27,6 +27,7 @@ class CBCrumbFetcher: CBCrumbFetching {
         return networking.producerToRequestAllCrumbsData()
             .flatMap(.Latest, transform: producerToTransformDataToJSON)
             .flatMap(.Concat, transform: producerToTransformJSONToCrumbItems)
+            .flatMap(.Concat, transform: producerToWriteCrumbItemsToRealm)
     }
     
 
@@ -54,20 +55,6 @@ class CBCrumbFetcher: CBCrumbFetching {
                 return Mapper<CBCrumbResponseEntity>().map(dict)
             }
             
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    for crumb in crumbs {
-                        realm.add(crumb, update: true)
-                    }
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-            
-            
-            
-            
             observer.sendNext(crumbs)
             observer.sendCompleted()
         }
@@ -75,20 +62,30 @@ class CBCrumbFetcher: CBCrumbFetching {
     }
     
     
+    private func producerToWriteCrumbItemsToRealm(crumbs:[CBCrumbResponseEntity]) -> SignalProducer<[CBCrumbResponseEntity], CBNetworkError> {
+        
+        return SignalProducer {observer, disposable in
+            
+            do {
+                let realm = try Realm()
+                
+                try realm.write {
+                    for crumb in crumbs {
+                        realm.add(crumb, update: true)
+                    }
+                }
+                
+                observer.sendNext(crumbs)
+                observer.sendCompleted()
+                
+            } catch let error as NSError {
+                observer.sendFailed(.Unknown(description: "Realm Failed"))
+                print(error)
+            }
+        }
+        
+    }
     
-    
-    
-//    func producerToFetchAllCrumbs() -> SignalProducer<[CBCrumb], CBNetworkingError> {
-//        
-//        return networking.producerToRequestAllCrumbsData().map({ (data:NSData?) -> [[String: AnyObject]] in
-//            do {
-//                return try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! [[String: AnyObject]]
-//                
-//            } catch let error as NSError {
-//                print(error.description)
-//            }
-//        })
-//    }
     
     
 }

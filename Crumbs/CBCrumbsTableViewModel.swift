@@ -26,16 +26,22 @@ class CBCrumbsTableViewModel: CBCrumbsTableViewModeling {
     
     func startFetch() {
         
-        crumbsFetcher.fetchAllCrumbs().map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModeling] in
-            crumbs.map { crumb in
-                return CBCrumbsTableViewCellModel(crumb: crumb, networking: self.networkService)
+        crumbsFetcher.fetchAllCrumbs()
+            .startOn(QueueScheduler.mainQueueScheduler)
+            .map { (crumbs:[CBCrumbResponseEntity]) -> [CBCrumbsTableViewCellModeling] in
+                
+                crumbs.map { crumb in
+                    return CBCrumbsTableViewCellModel(crumb: crumb, networking: self.networkService)
+                }
             }
-        }.observeOn(UIScheduler())
+            .observeOn(UIScheduler())
             .on(next: { models in
                 self._cellModels.value = models
             })
             .start()
-        
     }
-
+    
+    
+    
+    
 }

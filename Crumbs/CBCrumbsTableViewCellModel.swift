@@ -36,7 +36,7 @@ class CBCrumbsTableViewCellModel:NSObject, CBCrumbsTableViewCellModeling {
             return SignalProducer(value: crumbImage).observeOn(UIScheduler())
         }
         else {
-            let imageProducer = networkService.producerToRequestImage(self.imageURL!)
+            let imageProducer = networkService.producerToRequestImage(self.imageURL!).startOn(QueueScheduler.mainQueueScheduler)
                 .takeUntil(self.racutil_willDeallocProducer)
                 .on(next: { self.crumbImage = $0 })
                 .map { $0 as UIImage? }

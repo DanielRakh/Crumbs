@@ -10,12 +10,21 @@ import UIKit
 import MapKit
 import CoreLocation
 import ReactiveCocoa
+import RealmSwift
 
 class CBCrumbsMapViewController: UIViewController {
+    
+    let networkService = CBNetworkingService()
     
     
     let kDistanceMeters:CLLocationDistance = 500
     var shouldInitiallyZoom = true
+    
+    let realm = try! Realm()
+    var crumbs = try! Realm().objects(CBCrumbResponseEntity)
+//    var crumbsAnnotations = [CBCrumbAnnotation]()
+    
+    
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var currentLocationButton: UIButton!
@@ -34,9 +43,32 @@ class CBCrumbsMapViewController: UIViewController {
         // Delegate Setup
         mapView.delegate = self
         locationManager.delegate = self
-
-        bindSignals()
+        
         setupLocationManager()
+        addAnnotations(crumbs)
+        
+        
+    }
+
+    
+    func addAnnotations(crumbs:Results<CBCrumbResponseEntity>) {
+        for crumb in crumbs {
+        
+            let annotation = CBCrumbAnnotation(coordinate: CLLocationCoordinate2DMake(crumb.latitude, crumb.longitude), radius:50.0 , image:nil , title: crumb.title!, subtitle: nil)
+            
+            mapView?.addOverlay(MKCircle(centerCoordinate: annotation.coordinate, radius: annotation.radius))
+           
+//            networkService.producerToRequestImage(crumb.imageURL!).startOn(QueueScheduler.mainQueueScheduler)
+//                .takeUntil(self.racutil_willDeallocProducer)
+//                .on(next: {
+//                    annotation.image = $0
+//                }).observeOn(UIScheduler())
+//                .start()
+            
+            
+            self.mapView.addAnnotation(annotation)
+        }
+        
     }
     
     
@@ -55,24 +87,6 @@ class CBCrumbsMapViewController: UIViewController {
     }
     
     
-    func bindSignals() {
-        
-        
-//        let btnaction = CocoaAction(self.currentLocationButton
-//        
-//        
-//        DynamicProperty(object: currentLocationButton, keyPath: "selected")
-//            .producer
-//            .observeOn(UIScheduler())
-//            .on(next: {
-//                self.shouldZoom = ($0 as! NSNumber) == true ?  true : false
-//                self.mapView.showsUserLocation = ($0 as! NSNumber) == true ? true : false
-//            })
-//            .start()
-        
-    }
-    
-    
     // Helpers
     
     func zoomIntoCurrentLocation() {
@@ -80,41 +94,84 @@ class CBCrumbsMapViewController: UIViewController {
             zoomToCurrentLocationOnMap(self.mapView, locationCoordinate: self.mapView.userLocation.coordinate, regionDistance: (kDistanceMeters, kDistanceMeters))
         }
     }
-    
-
 }
 
 
 
 extension CBCrumbsMapViewController : MKMapViewDelegate {
-
+    
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        
         if shouldInitiallyZoom {
             zoomToCurrentLocationOnMap(mapView, locationCoordinate: userLocation.coordinate, regionDistance: (kDistanceMeters, kDistanceMeters))
             shouldInitiallyZoom = !shouldInitiallyZoom
         }
-        
     }
-    
     
     func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
         print(error)
     }
+    
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "myCrumb"
+        
+        guard annotation is CBCrumbAnnotation else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
+        
+        guard annotationView == nil else {
+            print("GUARD")
+            annotationView?.annotation = annotation
+//            annotationView?.image = (annotation as! CBCrumbAnnotation).image
+//            print(annotationView?.image)
+
+            return annotationView
+        }
+        
+        annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//        annotationView?.image = (annotation as! CBCrumbAnnotation).image
+        annotationView?.canShowCallout = true
+        annotationView?.animatesDrop = true
+        
+//        print(annotationView?.image)
+        
+        return annotationView
+    }
+    
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.lineWidth = 1.0
+        circleRenderer.strokeColor = UIColor.purpleColor()
+        circleRenderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.4)
+        return circleRenderer
+ 
+    }
+    
+    
 }
+
+
+
+
+
 
 
 extension CBCrumbsMapViewController : CLLocationManagerDelegate {
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
- 
+        
         print("location manager")
         
         let location = locations.first!
         
-//        zoomToCurrentLocationOnMap(mapView, locationCoordinate: location.coordinate, regionDistance: (1500,1500))
-
+        //        zoomToCurrentLocationOnMap(mapView, locationCoordinate: location.coordinate, regionDistance: (1500,1500))
+        
         
     }
     

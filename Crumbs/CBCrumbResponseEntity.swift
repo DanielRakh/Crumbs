@@ -36,8 +36,8 @@ class CBCrumbResponseEntity : Object, Mappable {
         username <- map[CrumbsAPIV1.kUsernameKey]
         title <- map[CrumbsAPIV1.kTitleKey]
         imageURL <- map[CrumbsAPIV1.kImageURLKey]
-        longitude <- (map[CrumbsAPIV1.kLongitudeKey], TransformOf<Double, String>(fromJSON: { Double($0!) }, toJSON: { $0.map { String($0) } }))
-        latitude <- (map[CrumbsAPIV1.kLatitudeKey], TransformOf<Double, String>(fromJSON: { Double($0!) }, toJSON: { $0.map { String($0) } }))
+        longitude <- map[CrumbsAPIV1.kLongitudeKey]
+        latitude <- map[CrumbsAPIV1.kLatitudeKey]
         createdTimestamp <- map[CrumbsAPIV1.kCreatedAtKey]
         updatedTimestamp <- map[CrumbsAPIV1.kUpdatedAtKey]
         
