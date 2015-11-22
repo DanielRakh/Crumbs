@@ -22,23 +22,24 @@ class CBCrumbsMapViewController: UIViewController {
     private var crumbAnnotations = [CBCrumbAnnotation]()
     private let locationManager = CLLocationManager()
 
-    
-    
     var viewModel:CBCrumbsMapViewModeling? {
         
         didSet {
             
             if let viewModel = viewModel {
                 
-                viewModel.crumbAnnotations.producer
-                    .on(next: { _ in
-                        self.crumbAnnotations = viewModel.crumbAnnotations.value
-                        self.mapView?.addAnnotations(viewModel.crumbAnnotations.value)
+                viewModel.crumbAnnotations.producer.observeOn(UIScheduler())
+                    .on(next: { annotations in
+                        self.crumbAnnotations = annotations
+                        self.mapView?.addAnnotations(annotations)
                     }).start()
                 
-                viewModel.crumbAnnotations.producer
-                    .on(next: {_ in
-                        self.mapView?.addOverlays(viewModel.crumbOverlays.value)
+                viewModel.crumbOverlays.producer.observeOn(UIScheduler())
+                    .on(next: { overlays in
+                        
+//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                            self.mapView?.addOverlays(overlays)
+//                        })
                     }).start()
 
             }
@@ -91,6 +92,8 @@ class CBCrumbsMapViewController: UIViewController {
         locationManager.delegate = self
         
         viewModel?.fetchAnnotations()
+        
+
         setupLocationManager()
         
     }
@@ -210,9 +213,29 @@ extension CBCrumbsMapViewController : MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.detailCalloutAccessoryView = UIImageView(image: nil)
+        configureDetailView(annotationView!)
         
         return annotationView
+    }
+    
+    
+    func configureDetailView(annotationView: MKAnnotationView) {
+        let width = 300
+        let height = 200
+        
+        let snapshotView = UIView()
+        let views = ["snapshotView": snapshotView]
+        snapshotView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[snapshotView(300)]", options: [], metrics: nil, views: views))
+        snapshotView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[snapshotView(200)]", options: [], metrics: nil, views: views))
+ 
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        
+
+        imageView.image = (annotationView.annotation as? CBCrumbAnnotation)?.image
+        snapshotView.addSubview(imageView)
+        
+
+        annotationView.detailCalloutAccessoryView = snapshotView
     }
     
     

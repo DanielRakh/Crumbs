@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             CBCrumbsTableViewModel(crumbFetcher: r.resolve(CBCrumbFetching.self)!, networking: r.resolve(CBNetworking.self)!)
         }
         container.register(CBCrumbsMapViewModeling.self) { r in
-            CBCrumbsMapViewModel()
+            CBCrumbsMapViewModel(networking: r.resolve(CBNetworking.self)!)
         }
         
         // Views

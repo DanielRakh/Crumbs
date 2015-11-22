@@ -18,6 +18,6 @@ protocol CBCrumbsMapViewModeling {
 
     
     func fetchAnnotations()
-    func getCrumbImage() -> SignalProducer<UIImage?, NoError>
+//    func getCrumbImage() -> SignalProducer<UIImage?, NoError>
     
 }
