@@ -37,9 +37,9 @@ class CBCrumbsMapViewController: UIViewController {
                 viewModel.crumbOverlays.producer.observeOn(UIScheduler())
                     .on(next: { overlays in
                         
-//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                            self.mapView?.addOverlays(overlays)
-//                        })
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.mapView?.addOverlays(overlays)
+                        })
                     }).start()
 
             }
@@ -90,6 +90,17 @@ class CBCrumbsMapViewController: UIViewController {
         // Delegate Setup
         mapView.delegate = self
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        
+        if locationManager.monitoredRegions.count == 0 {
+            isMonitoring = false
+            self.monitoringButton.setTitle("Start Monitoring", forState: .Normal)
+        } else {
+            isMonitoring = true
+            self.monitoringButton.setTitle("Stop Monitoring", forState: .Normal)
+        }
+        
+        
         
         viewModel?.fetchAnnotations()
         
@@ -228,14 +239,33 @@ extension CBCrumbsMapViewController : MKMapViewDelegate {
         snapshotView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[snapshotView(300)]", options: [], metrics: nil, views: views))
         snapshotView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[snapshotView(200)]", options: [], metrics: nil, views: views))
  
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         
+        annotationView.detailCalloutAccessoryView = snapshotView
 
-        imageView.image = (annotationView.annotation as? CBCrumbAnnotation)?.image
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner.center = CGPoint(x: (annotationView.detailCalloutAccessoryView?.bounds.size.width)!/2, y: (annotationView.detailCalloutAccessoryView?.bounds.size.height)!/2)
+        annotationView.detailCalloutAccessoryView?.addSubview(spinner)
+        annotationView.detailCalloutAccessoryView?.bringSubviewToFront(spinner)
+
+
+        spinner.startAnimating()
+        
+        
+        self.viewModel?.getCrumbImage(((annotationView.annotation as? CBCrumbAnnotation)?.imageURL!)!).on(next: {
+            spinner.stopAnimating()
+              imageView.image = $0
+        }).start()
+        
+        
+        
         snapshotView.addSubview(imageView)
         
 
-        annotationView.detailCalloutAccessoryView = snapshotView
     }
     
     

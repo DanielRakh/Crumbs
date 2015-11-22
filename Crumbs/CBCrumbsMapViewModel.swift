@@ -46,7 +46,8 @@ class CBCrumbsMapViewModel : NSObject, CBCrumbsMapViewModeling {
         do {
             
             let realm = try Realm()
-            let annotations = realm.objects(CBCrumbResponseEntity).map { crumb in
+
+            self.annotations.value = realm.objects(CBCrumbResponseEntity).map { crumb in
                 
                 return CBCrumbAnnotation(
                     coordinate:
@@ -59,13 +60,6 @@ class CBCrumbsMapViewModel : NSObject, CBCrumbsMapViewModeling {
                     subtitle: "Radius: \(self.kRadiusMeters)m - On Entry")
                 
                 }
-
-            
-            // Get [CBCrumbResponseEntity]...for each one get an image.....once you got the image....create an annotation....collectAll and return
-            
-            self.annotations <~ passCrumbs(arr)
-                .flatMap(.Concat, transform: getCrumbImage)
-                .flatMap(.Concat, transform: createAnnotations).collect()
             
             
             self.overlays.value = self.annotations.value.map {
@@ -80,7 +74,7 @@ class CBCrumbsMapViewModel : NSObject, CBCrumbsMapViewModeling {
     }
     
     
-    private func passCrumbs(crumbs:[CBCrumbResponseEntity]) -> SignalProducer<CBCrumbResponseEntity, NoError> {
+    private func passCrumbs(crumbs:[CBCrumbAnnotation]) -> SignalProducer<CBCrumbAnnotation, NoError> {
         return SignalProducer {observer , disposable in
             
            _ =  crumbs.map { crumb in
@@ -107,51 +101,46 @@ class CBCrumbsMapViewModel : NSObject, CBCrumbsMapViewModeling {
     
     
 
-    private func createAnnotations(crumbImage:UIImage?, crumb:CBCrumbResponseEntity) -> SignalProducer<CBCrumbAnnotation,NoError> {
-        return SignalProducer {observer, disposable in
-            
-            let annotation = CBCrumbAnnotation(
-                coordinate:
-                CLLocationCoordinate2D(latitude: crumb.latitude, longitude: crumb.longitude),
-                radius: self.kRadiusMeters,
-                id: crumb.id,
-                image: crumbImage,
-                title: crumb.title,
-                subtitle: "Radius: \(self.kRadiusMeters)m - On Entry")
-            
-            observer.sendNext(annotation)
-            observer.sendCompleted()
-        
-        }
-    }
-    
-    
-    
-    private func getCrumbImage(crumb:CBCrumbResponseEntity) -> SignalProducer<(UIImage?, CBCrumbResponseEntity),  NoError> {
-        
-        return SignalProducer {observer, disposable in
-            
-            self.networkService.producerToRequestImage(crumb.imageURL!).startOn(QueueScheduler.mainQueueScheduler)
-                .takeUntil(self.racutil_willDeallocProducer)
-                .on(next: {
-                    observer.sendNext(($0, crumb))
-                    observer.sendCompleted()
-                }).start()
-//                .map { $0 as UIImage? }
-//                .flatMapError { _ in SignalProducer<UIImage?, NoError>(value: nil) }
-        }
-        
-//        let imageProducer = networkService.producerToRequestImage(crumb.imageURL!).startOn(QueueScheduler.mainQueueScheduler)
-//                .takeUntil(self.racutil_willDeallocProducer)
-//                .on(next: { self.crumbImage = $0 })
-//                .map { $0 as UIImage? }
-//                .flatMapError { _ in SignalProducer<UIImage?, NoError>(value: nil) }
-//            .wait()
+//    private func createAnnotations(crumbImage:UIImage?, crumb:CBCrumbResponseEntity) -> SignalProducer<CBCrumbAnnotation,NoError> {
+//        return SignalProducer {observer, disposable in
 //            
-//            return SignalProducer(value: nil)
-//                .concat(imageProducer)
-//                .observeOn(UIScheduler())
+//            let annotation = CBCrumbAnnotation(
+//                coordinate:
+//                CLLocationCoordinate2D(latitude: crumb.latitude, longitude: crumb.longitude),
+//                radius: self.kRadiusMeters,
+//                id: crumb.id,
+//                image: crumbImage,
+//                title: crumb.title,
+//                subtitle: "Radius: \(self.kRadiusMeters)m - On Entry")
+//            
+//            observer.sendNext(annotation)
+//            observer.sendCompleted()
+//        
 //        }
-    }
+//    }
+//    
+    
+    
+func getCrumbImage(url:String) -> SignalProducer<UIImage?,  NoError> {
+    
 
+        return SignalProducer {observer, disposable in
+            
+                    return self.networkService.producerToRequestImage(url).startOn(QueueScheduler.mainQueueScheduler)
+                            .takeUntil(self.racutil_willDeallocProducer)
+                            .on(next: {
+                                observer.sendNext($0)
+                                observer.sendCompleted()
+                            
+                            }).observeOn(UIScheduler()).start()
+            
+//                        return SignalProducer(value: nil)
+//                            .concat(imageProducer)
+//                            .observeOn(UIScheduler())
+                    }
+        
+    
+
+        }
+    
 }

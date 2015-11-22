@@ -9,6 +9,7 @@
 import UIKit
 import Swinject
 import CoreLocation
+import RealmSwift
 
 //TODO: MAKE SURE TO MODIFY APP TRANSPORT SECURITY OR YOUR SHIT WILL GET REJECTED!
 
@@ -50,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return container
     }
     
-//    let locationManager = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -74,21 +74,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
-//        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
-//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         return true
     }
     
     
     func handleReigonEvent(region: CLRegion!) {
-        print("Geofence triggered")
+        // Show an alert if application is active
+        if UIApplication.sharedApplication().applicationState == .Active {
+            if let message = titleFromRegionIdentifier(Int(region.identifier)!) {
+                if let viewController = window?.rootViewController {
+                    showSimpleAlertWithTitle(nil, message: "You've just found a 🍆 at: \(message)! 👱🏿", viewController: viewController)
+                }
+            }
+        } else {
+            // Otherwise present a local notification
+            let notification = UILocalNotification()
+            notification.alertBody = "You've just found a 🍆 at: \(titleFromRegionIdentifier(Int(region.identifier)!)) 👱🏿"
+            notification.soundName = "Default";
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        }
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if region is CLCircularRegion {
             handleReigonEvent(region)
         }
+    }
+    
+    
+    func titleFromRegionIdentifier(identifier:Int) -> String? {
+        
+        do {
+            let realm = try Realm()
+            let savedItems = realm.objects(CBCrumbResponseEntity)
+            
+            for item in savedItems {
+                if (item.id == identifier) {
+                    return item.title
+                }
+            }
+            
+        } catch let error as NSError {
+            showSimpleAlertWithTitle("Error!", message: "Error getting the name of the place for the geofence\(error.localizedDescription)", viewController: (UIApplication.sharedApplication().keyWindow?.rootViewController)!)
+        }
+        
+        return nil
     }
     
     
@@ -117,18 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-//    func notefromRegionIdentifier(identifier: String) -> String? {
-//        if let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(kSavedItemsKey) {
-//            for savedItem in savedItems {
-//                if let crumb = NSKeyedUnarchiver.unarchiveObjectWithData(savedItem as! NSData) as? CBCrumb {
-//                    if "\(crumb.crumbId)" == identifier {
-//                        return "BRUSH! 👱🏿🍆👱🏿🍆👱🏿🍆👱🏿🍆👱🏿🍆👱🏿🍆"
-//                    }
-//                }
-//            }
-//        }
-//        return nil
-//    }
 
 
 }

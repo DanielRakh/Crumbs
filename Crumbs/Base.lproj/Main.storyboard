@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ck4-6b-KVC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -52,21 +53,21 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="36" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dropped by: Daniel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-gP-syB">
                                                             <rect key="frame" x="0.0" y="21" width="124" height="17"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Created on: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph4-53-OYo">
                                                             <rect key="frame" x="0.0" y="40" width="80" height="17"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -231,12 +232,12 @@
                                 <exclude reference="1FY-mh-XZe"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="9kQ-Za-Jfr"/>
+                                <exclude reference="9ql-84-rGx"/>
                                 <exclude reference="Ics-Hv-hsj"/>
                                 <exclude reference="UYO-RT-wqq"/>
                                 <exclude reference="bRQ-aU-sUa"/>
                                 <exclude reference="tQE-Go-EhH"/>
-                                <exclude reference="9kQ-Za-Jfr"/>
-                                <exclude reference="9ql-84-rGx"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -245,12 +246,12 @@
                                 <include reference="1FY-mh-XZe"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="9kQ-Za-Jfr"/>
+                                <include reference="9ql-84-rGx"/>
                                 <include reference="Ics-Hv-hsj"/>
                                 <include reference="UYO-RT-wqq"/>
                                 <include reference="bRQ-aU-sUa"/>
                                 <include reference="tQE-Go-EhH"/>
-                                <include reference="9kQ-Za-Jfr"/>
-                                <include reference="9ql-84-rGx"/>
                             </mask>
                         </variation>
                     </view>
@@ -304,7 +305,7 @@
         <scene sceneID="qjm-SB-xnX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z40-KB-mRt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="ZsK-FX-LxI"/>
+                    <tabBarItem key="tabBarItem" title="List" image="bolt" id="ZsK-FX-LxI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V2H-MQ-wL1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -324,7 +325,7 @@
         <scene sceneID="wxY-Us-DxM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mBQ-93-cMY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="KUV-0Z-2c2"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="globe" id="KUV-0Z-2c2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ors-1B-pKL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -345,5 +346,7 @@
         <image name="CurrentLocationDefault" width="15" height="15"/>
         <image name="CurrentLocationSelected" width="15" height="15"/>
         <image name="ImagePlaceholder" width="100" height="100"/>
+        <image name="bolt" width="22" height="28"/>
+        <image name="globe" width="28" height="28"/>
     </resources>
 </document>
