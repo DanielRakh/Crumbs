@@ -30,7 +30,6 @@ class CBCrumbFetcher: CBCrumbFetching {
             .flatMap(.Concat, transform: producerToWriteCrumbItemsToRealm)
     }
     
-
     
     // MARK: Private Helpers
     private func producerToTransformDataToJSON(data:NSData?) -> SignalProducer<[[String : AnyObject]], CBNetworkError> {
@@ -58,7 +57,6 @@ class CBCrumbFetcher: CBCrumbFetching {
             observer.sendNext(crumbs)
             observer.sendCompleted()
         }
-
     }
     
     
@@ -67,9 +65,11 @@ class CBCrumbFetcher: CBCrumbFetching {
         return SignalProducer {observer, disposable in
             
             do {
+                
                 let realm = try Realm()
                 
                 try realm.write {
+                    realm.deleteAll()
                     for crumb in crumbs {
                         realm.add(crumb, update: true)
                     }
@@ -83,9 +83,7 @@ class CBCrumbFetcher: CBCrumbFetching {
                 print(error)
             }
         }
-        
     }
-    
     
     
 }

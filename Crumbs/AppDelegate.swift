@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         } else {
             // Otherwise present a local notification
             let notification = UILocalNotification()
-            notification.alertBody = "You've just found a 🍆 at: \(titleFromRegionIdentifier(Int(region.identifier)!)) 👱🏿"
+            notification.alertBody = "You've just found a 🍆 at: \(titleFromRegionIdentifier(Int(region.identifier)!)!) 👱🏿"
             notification.soundName = "Default";
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         }
@@ -123,8 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return nil
     }
-    
-    
     
     
 
